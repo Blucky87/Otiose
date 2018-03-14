@@ -6,7 +6,8 @@
 + .NET Portable Class Library
 
 
-#After Cloning
-1. git subtree add --prefix src/libs/Nez https://github.com/Blucky87/Nez.git master --squash
+# After Cloning Otiose
+1. `git clone git@github.com:Blucky87/otiose.git`
+1. `git subtree add --prefix src/libs/Nez git@github.com:Blucky87/Nez.git master --squash`
 2. Make sure Nez references the MonoGame portable library
 
