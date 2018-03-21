@@ -14,6 +14,21 @@ namespace Otiose
         [STAThread]
         static void Main()
         {
+
+            int secondsToSleep = 5;
+
+            while (secondsToSleep > 0)
+            {
+                Console.WriteLine($"{secondsToSleep} seconds until launch.");
+                System.Threading.Thread.Sleep(1000);
+
+                secondsToSleep--;
+            }
+
+            for (; secondsToSleep > 0; secondsToSleep--)
+            {
+                
+            }
             using (var game = new Game1())
                 game.Run();
         }

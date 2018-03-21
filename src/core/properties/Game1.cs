@@ -23,6 +23,8 @@ namespace Otiose
         }
 
         Scene otherScene;
+        public static ulong ticks = 0;
+        public static float delta = 0;
         
         protected override void Initialize()
         {
@@ -30,6 +32,7 @@ namespace Otiose
             //Window.ClientSizeChanged += Core;
             
             Window.AllowUserResizing = true;
+            InputManager.Setup();
             
             // create our Scene with the DefaultRenderer and a clear color of CornflowerBlue
             var myScene = Scene.createWithDefaultRenderer();
@@ -55,6 +58,9 @@ namespace Otiose
           {
             Console.WriteLine("ah yo");
           }
+            
+            ticks++;
+            delta = gametime.ElapsedGameTime.Milliseconds;
 //          if (Nez.Input.leftMouseButtonDown)
 //          {
 //            Debug.log(Nez.Input.scaledMousePosition);

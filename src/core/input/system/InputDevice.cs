@@ -62,6 +62,7 @@ namespace Otiose.Input
             DPad = new TwoAxisInputControl();
 
             Command = AddControl(InputControlType.Command, "Command");
+            AddControl(InputControlType.Action1, "Action1");
         }
 
 
@@ -240,6 +241,7 @@ namespace Otiose.Input
 
         public virtual void Update(ulong updateTick, float deltaTime)
         {
+            int i = 10;
             // Implemented by subclasses.
         }
 

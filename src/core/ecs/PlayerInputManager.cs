@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Nez;
 
@@ -44,8 +45,8 @@ namespace Otiose.Input.Setup
 
         public void CheckInput()
         {
-            
-            InputManager.ActiveDevice.ClearInputState();
+//            CharacterActions.Update(Game1.ticks, Game1.delta);
+//            InputManager.ActiveDevice.ClearInputState();
             Command _command;
             CommandInvoker _invoker;
 
@@ -222,6 +223,7 @@ namespace Otiose.Input.Setup
         public void update()
         {
             CheckInput();
+            CharacterActions.Update(Game1.ticks, Game1.delta);
         }
 
         private void BindControls()
@@ -244,7 +246,7 @@ namespace Otiose.Input.Setup
             CharacterActions.RSRight.AddDefaultBinding(Keys.L);
             CharacterActions.RSRight.AddDefaultBinding(InputControlType.RightStickRight);
             CharacterActions.PlayerAction1.AddDefaultBinding(Keys.Q);
-//            CharacterActions.PlayerAction1.AddDefaultBinding(InputControlType.Action1);
+            CharacterActions.PlayerAction1.AddDefaultBinding(InputControlType.Action1);
             CharacterActions.PlayerAction2.AddDefaultBinding(Keys.W);
             CharacterActions.PlayerAction2.AddDefaultBinding(InputControlType.Action2);
             CharacterActions.RightBumper.AddDefaultBinding(InputControlType.RightBumper);

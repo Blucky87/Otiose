@@ -27,7 +27,7 @@ namespace Otiose.Input.Setup
 
         public InputActionSet()
         {
-
+            
             LSUp = CreatePlayerAction("Left Stick Up");
             LSDown = CreatePlayerAction("Left Stick Down");
             LSLeft = CreatePlayerAction("Left Stick Left");

@@ -82,7 +82,7 @@ namespace Otiose.Input
         {
             get
             {
-                Console.WriteLine("Is Pressed");
+                
                 if (size == 0)
                 {
                     return false;
@@ -92,7 +92,12 @@ namespace Otiose.Input
                 for (var i = 0; i < size; i++)
                 {
                     var key = GetInt(i);
+                    var nezkey = Nez.Input.isKeyDown((Keys) key);
                     isPressed = isPressed && Nez.Input.isKeyDown((Keys)key);
+                    if (isPressed)
+                    {
+                        Console.WriteLine($"{nezkey} Is Pressed");
+                    }
                 }
 
                 return isPressed;
@@ -144,7 +149,7 @@ namespace Otiose.Input
         static Dictionary<ulong, string> cachedStrings = new Dictionary<ulong, string>();
         public override string ToString()
         {
-            string value;
+            string value = String.Empty;
             if (!cachedStrings.TryGetValue(data, out value))
             {
                 value = "";
