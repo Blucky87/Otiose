@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using Otiose2D.Input.Setup;
+using Otiose.Input.Setup;
 
 namespace BlankControllerActions
 {

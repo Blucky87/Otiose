@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Otiose2D.Input.Setup
+namespace Otiose.Input.Setup
 {
     public abstract class Command
     {
@@ -13,7 +13,4 @@ namespace Otiose2D.Input.Setup
 
         public abstract void Execute();
     }
-
-
-
 }

@@ -1,13 +1,9 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
-using Otiose2D.Input.Setup;
+using Otiose.Input.Setup;
 
 namespace RoamingControllerActions
 {
-
-
-
-
     internal class Action2 : ControlBehavior {
         private int num = 0;
 

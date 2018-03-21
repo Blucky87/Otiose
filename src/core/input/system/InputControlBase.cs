@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Nez;
 
-namespace Otiose2D.Input
+namespace Otiose.Input
 {
     public abstract class InputControlBase : IInputControl
     {

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.IO;
+using Nez;
 
-namespace Otiose2D.Input
+namespace Otiose.Input
 {
     public struct UnknownDeviceControl : IEquatable<UnknownDeviceControl>
     {
@@ -13,6 +14,7 @@ namespace Otiose2D.Input
 
         public UnknownDeviceControl(InputControlType control, InputRangeType sourceRange)
         {
+            Debug.log("Creating Unknown Device Control");
             Control = control;
             SourceRange = sourceRange;
         }

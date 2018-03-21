@@ -1,5 +1,5 @@
 ﻿
-namespace Otiose2D.Input
+namespace Otiose.Input
 {
     public class InputControl : InputControlBase
     {

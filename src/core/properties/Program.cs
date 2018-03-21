@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Text;
 
-namespace Otiose2D
+namespace Otiose
 {
     /// <summary>
     /// The main class.

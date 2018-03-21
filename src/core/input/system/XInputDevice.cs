@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace Otiose2D.Input
+namespace Otiose.Input
 {
     public class XInputDevice : InputDevice
     {

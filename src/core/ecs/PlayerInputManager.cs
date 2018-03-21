@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Input;
 using Nez;
 
-namespace Otiose2D.Input.Setup
+namespace Otiose.Input.Setup
 {
     public sealed class PlayerInputManager : Component, IUpdatable {
 
@@ -38,7 +38,7 @@ namespace Otiose2D.Input.Setup
             _controllerProfileStack = new Stack<ControllerProfile>();
             EnterControlProfile(ControlProfile.Roam);
 
-            //_playerDevice = InputManager.ActiveDevice;
+//            _playerDevice = InputManager.ActiveDevice;
             BindControls();
         }
 
@@ -52,7 +52,7 @@ namespace Otiose2D.Input.Setup
             //////////////////////////////////////////////
             //               Action 1  (Attack)         //
             //////////////////////////////////////////////
-            if (CharacterActions.PlayerAction1.WasPressed)
+            if(CharacterActions.PlayerAction1.WasPressed)
             {
                 _command = new Action1WasPressed(ControllerProfile);
                 _invoker = new CommandInvoker(_command);
@@ -228,13 +228,13 @@ namespace Otiose2D.Input.Setup
         {
             CharacterActions.Device = InputManager.ActiveDevice;
             CharacterActions.LSLeft.AddDefaultBinding(Keys.Left);
-           // CharacterActions.LSLeft.AddDefaultBinding(InputControlType.LeftStickLeft);
+            CharacterActions.LSLeft.AddDefaultBinding(InputControlType.LeftStickLeft);
             CharacterActions.LSRight.AddDefaultBinding(Keys.Right);
-            //CharacterActions.LSRight.AddDefaultBinding(InputControlType.LeftStickRight);
+            CharacterActions.LSRight.AddDefaultBinding(InputControlType.LeftStickRight);
             CharacterActions.LSUp.AddDefaultBinding(Keys.Up);
-           // CharacterActions.LSUp.AddDefaultBinding(InputControlType.LeftStickUp);
+            CharacterActions.LSUp.AddDefaultBinding(InputControlType.LeftStickUp);
             CharacterActions.LSDown.AddDefaultBinding(Keys.Down);
-            //CharacterActions.LSDown.AddDefaultBinding(InputControlType.LeftStickDown);
+            CharacterActions.LSDown.AddDefaultBinding(InputControlType.LeftStickDown);
             CharacterActions.RSUp.AddDefaultBinding(Keys.I);
             CharacterActions.RSUp.AddDefaultBinding(InputControlType.RightStickUp);
             CharacterActions.RSDown.AddDefaultBinding(Keys.K);
@@ -243,14 +243,13 @@ namespace Otiose2D.Input.Setup
             CharacterActions.RSLeft.AddDefaultBinding(InputControlType.RightStickLeft);
             CharacterActions.RSRight.AddDefaultBinding(Keys.L);
             CharacterActions.RSRight.AddDefaultBinding(InputControlType.RightStickRight);
-            CharacterActions.PlayerAction1.AddDefaultBinding(Keys.D1);
-            CharacterActions.PlayerAction1.AddDefaultBinding(InputControlType.Action1);
-            CharacterActions.PlayerAction2.AddDefaultBinding(Keys.D2);
+            CharacterActions.PlayerAction1.AddDefaultBinding(Keys.Q);
+//            CharacterActions.PlayerAction1.AddDefaultBinding(InputControlType.Action1);
+            CharacterActions.PlayerAction2.AddDefaultBinding(Keys.W);
             CharacterActions.PlayerAction2.AddDefaultBinding(InputControlType.Action2);
             CharacterActions.RightBumper.AddDefaultBinding(InputControlType.RightBumper);
             CharacterActions.RightBumper.AddDefaultBinding(Keys.E);
             CharacterActions.LeftBumper.AddDefaultBinding(InputControlType.LeftBumper);
-            CharacterActions.LeftBumper.AddDefaultBinding(Keys.Q);
         }
 
     }

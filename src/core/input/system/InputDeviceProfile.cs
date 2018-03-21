@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Nez;
 
-namespace Otiose2D.Input
+namespace Otiose.Input
 {
     public abstract class InputDeviceProfile
     {

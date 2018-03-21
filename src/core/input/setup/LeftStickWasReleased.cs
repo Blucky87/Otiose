@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Otiose2D.Input.Setup {
+namespace Otiose.Input.Setup {
 
     public class LeftStickWasReleased : Command {
         private Vector2 _axis;

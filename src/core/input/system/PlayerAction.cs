@@ -7,7 +7,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Input;
 using Nez;
 
-namespace Otiose2D.Input
+namespace Otiose.Input
 {
     /// <summary>
     /// This class represents a single action that may have multiple controls bound to it.
@@ -710,7 +710,8 @@ namespace Otiose2D.Input
             {
                 var bindingSourceType = (BindingSourceType)reader.ReadInt32();
                 BindingSource bindingSource;
-
+                
+                
                 switch (bindingSourceType)
                 {
                     case BindingSourceType.DeviceBindingSource:

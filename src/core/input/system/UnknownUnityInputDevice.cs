@@ -1,6 +1,7 @@
 ﻿using System;
+using Nez;
 
-namespace Otiose2D.Input
+namespace Otiose.Input
 {
     public class UnknownUnityInputDevice : UnityInputDevice
     {
@@ -10,7 +11,9 @@ namespace Otiose2D.Input
         internal UnknownUnityInputDevice(InputDeviceProfile profile, int joystickId)
             : base(profile, joystickId)
         {
+            Debug.log("Unknown Unity Input Device");
             AnalogSnapshot = new float[MaxAnalogs];
+            
         }
 
 

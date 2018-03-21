@@ -1,7 +1,7 @@
 ﻿using System;
 using Nez;
 
-namespace Otiose2D.Sprites
+namespace Otiose.Sprites
 {
     public class SpriteAnimator : RenderableComponent, IUpdatable
     {

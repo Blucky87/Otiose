@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Nez;
 using Nez.Sprites;
 
-namespace Otiose2D.Sprites
+namespace Otiose.Sprites
 {
     public class AnimationClip
     {

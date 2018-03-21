@@ -6,7 +6,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Input;
 //using OpenTK.Input;
 
-namespace Otiose2D.Input
+namespace Otiose.Input
 {
     /// <summary>
     /// Represents a combination of one or more keys, including modifiers, up to a maximum of eight.
@@ -82,6 +82,7 @@ namespace Otiose2D.Input
         {
             get
             {
+                Console.WriteLine("Is Pressed");
                 if (size == 0)
                 {
                     return false;
@@ -102,6 +103,7 @@ namespace Otiose2D.Input
         public static KeyCombo Detect(bool modifiersAsKeys)
         {
             var keyCombo = new KeyCombo();
+            Console.WriteLine("Detect");
 
             if (modifiersAsKeys)
             {

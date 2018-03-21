@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Otiose2D.Input.Setup {
+namespace Otiose.Input.Setup {
     public class RightStickWasReleased : Command {
         //test
         private Vector2 _axis;

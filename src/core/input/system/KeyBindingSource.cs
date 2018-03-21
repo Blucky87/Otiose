@@ -1,7 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Microsoft.Xna.Framework.Input;
+using Nez;
 
-namespace Otiose2D.Input
+namespace Otiose.Input
 {
     public class KeyBindingSource : BindingSource
     {
@@ -10,29 +12,38 @@ namespace Otiose2D.Input
 
         internal KeyBindingSource()
         {
+            
         }
 
 
         public KeyBindingSource(KeyCombo keyCombo)
         {
+            Console.WriteLine("Creating Key Binding Source from keycombo");
             Control = keyCombo;
         }
 
 
         public KeyBindingSource(params Keys[] keys)
         {
+            Console.WriteLine("Creating Key Binding Source from key array");
+            foreach (var key in keys)
+            {
+                Console.WriteLine(key.ToString());
+            }
             Control = new KeyCombo(keys);
         }
 
 
         public override float GetValue(InputDevice inputDevice)
         {
+            Console.WriteLine("Getting Value from Key Binding Source");
             return GetState(inputDevice) ? 1.0f : 0.0f;
         }
 
 
         public override bool GetState(InputDevice inputDevice)
         {
+            Console.WriteLine("Getting State from Key Binding Source");
             return Control.IsPressed;
         }
 

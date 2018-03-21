@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Otiose2D.Input
+namespace Otiose.Input
 {
 
 	/// <summary>

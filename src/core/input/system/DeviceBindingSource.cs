@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Otiose2D.Input
+namespace Otiose.Input
 {
 
     public class DeviceBindingSource : BindingSource

@@ -1,5 +1,5 @@
 ﻿
-namespace Otiose2D.Input.Setup {
+namespace Otiose.Input.Setup {
 
     public class Action1WasPressed : Command {
 

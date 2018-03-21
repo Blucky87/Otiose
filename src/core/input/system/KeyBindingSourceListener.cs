@@ -1,4 +1,4 @@
-﻿namespace Otiose2D.Input
+﻿namespace Otiose.Input
 {
     public class KeyBindingSourceListener : BindingSourceListener
     {

@@ -8,14 +8,13 @@ using Microsoft.Xna.Framework.Input;
 using Nez;
 using Nez.Console;
 using Nez.Textures;
-
-using Otiose2D.Input.Setup;
 using Nez.Sprites;
 using Nez.UI;
-using Otiose2D.Sprites;
+using Otiose.Input.Setup;
+using Otiose.Sprites;
 
 
-namespace Otiose2D
+namespace Otiose
 {
     public class Game1 : Core
     {
@@ -23,33 +22,29 @@ namespace Otiose2D
             
         }
 
-        private enum temp {
-            one,
-            two
-        };
-
         Scene otherScene;
+        
         protected override void Initialize()
         {
-
-//            Window.ClientSizeChanged += Core;
-
+            
+            //Window.ClientSizeChanged += Core;
+            
             Window.AllowUserResizing = true;
-
+            
             // create our Scene with the DefaultRenderer and a clear color of CornflowerBlue
             var myScene = Scene.createWithDefaultRenderer();
-
-          Entity entity = myScene.createEntity("Entity1");
-            entity.transform.position = new Vector2( 300, 300 );
-
-          string scmlpath = "GreyGuy/player";
-
-          entity.addComponent(new PlayerInputManager());
             
-          //entity.getComponent<SpriteAnimator>().play("walk");
+            Entity entity = myScene.createEntity("Entity1");
+            entity.transform.position = new Vector2( 300, 300 );
+            
+            string scmlpath = "GreyGuy/player";
+            
+            entity.addComponent(new PlayerInputManager());
+            
+            //entity.getComponent<SpriteAnimator>().play("walk");
             // set the scene so Nez can take over
             Core.scene = myScene;
-
+            
             base.Initialize();
         }
 
@@ -58,12 +53,12 @@ namespace Otiose2D
 
           if(Nez.Input.currentKeyboardState.IsKeyDown(Keys.A))
           {
-
+            Console.WriteLine("ah yo");
           }
-          if (Nez.Input.leftMouseButtonDown)
-          {
-            Debug.log(Nez.Input.scaledMousePosition);
-          }
+//          if (Nez.Input.leftMouseButtonDown)
+//          {
+//            Debug.log(Nez.Input.scaledMousePosition);
+//          }
 
 /*            if(Input.isKeyDown(Keys.A)) {
                 var img2 = otherScene.contentManager.Load<Texture2D>("DownBreathing");

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using Nez;
 using Nez.Console;
-using Otiose2D.Input;
+using Otiose.Input;
 
-namespace Otiose2D
+namespace Otiose
 {
     public class InputManager
     {
@@ -87,7 +87,7 @@ namespace Otiose2D
             {
                 return false;
             }
-
+            Console.WriteLine("Setting up internal Input Manager");
 
 
             initialTime = 0.0f;
@@ -464,6 +464,7 @@ namespace Otiose2D
         public static void AttachDevice(InputDevice inputDevice)
         {
             AssertIsSetup();
+            Console.WriteLine($"Attaching Device {inputDevice.Name}");
 
             if (!inputDevice.IsSupportedOnThisPlatform)
             {
