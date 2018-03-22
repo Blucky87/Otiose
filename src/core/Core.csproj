@@ -16,7 +16,4 @@
   <ItemGroup>
     <ProjectReference Include="..\libs\Nez\Nez.Portable\Nez.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="components" />
-  </ItemGroup>
 </Project>

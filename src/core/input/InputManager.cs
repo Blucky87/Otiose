@@ -9,7 +9,7 @@ using Otiose.Input;
 
 namespace Otiose
 {
-    public class InputManager
+    public class InputManager : IUpdatableManager
     {
         
 
@@ -67,13 +67,6 @@ namespace Otiose
         static ulong currentTick;
         
 
-
-        /// <summary>
-        /// DEPRECATED: Use the InControlManager component instead.
-        /// </summary>
-        /// @deprecated
-        /// Calling this method directly is no longer supported. Use the InControlManager component to
-        /// manage the lifecycle of the input manager instead.
         
         public static void Setup()
         {
@@ -87,8 +80,8 @@ namespace Otiose
             {
                 return false;
             }
-            Console.WriteLine("Setting up internal Input Manager");
-
+            
+            Debug.log("Setting up Input Manager");
 
             initialTime = 0.0f;
             currentTime = 0.0f;
@@ -153,12 +146,14 @@ namespace Otiose
         }
 
 
-        /// <summary>
-        /// DEPRECATED: Use the InControlManager component instead.
-        /// </summary>
-        /// @deprecated
-        /// Calling this method directly is no longer supported. Use the InControlManager component to
-        /// manage the lifecycle of the input manager instead.
+        //
+        // BL: wrapper for adding to Nez's global manager
+        //
+        public void update()
+        {
+            Update();
+        }
+        
         
         public static void Update()
         {
