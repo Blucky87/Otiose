@@ -92,12 +92,7 @@ namespace Otiose.Input
                 for (var i = 0; i < size; i++)
                 {
                     var key = GetInt(i);
-                    var nezkey = Nez.Input.isKeyDown((Keys) key);
                     isPressed = isPressed && Nez.Input.isKeyDown((Keys)key);
-                    if (isPressed)
-                    {
-                        Console.WriteLine($"{nezkey} Is Pressed");
-                    }
                 }
 
                 return isPressed;

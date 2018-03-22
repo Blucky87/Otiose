@@ -43,13 +43,14 @@ namespace Otiose.Input
 
             for (int deviceIndex = 0; deviceIndex < maxDevices; deviceIndex++)
             {
-                devices.Add(new XInputDevice(deviceIndex, this));
+                XInputDevice xInputDevice = new XInputDevice(deviceIndex, this);
+                devices.Add(xInputDevice);
+                InputManager.AttachDevice(xInputDevice);
             }
 
             Update(0, 0.0f);
         }
-
-
+        
         void StartWorker()
         {
             if (thread == null)
@@ -116,6 +117,8 @@ namespace Otiose.Input
                     }
 
                     deviceConnected[deviceIndex] = device.IsConnected;
+                    
+                    Console.WriteLine($"{device.Name} connected");
                 }
             }
         }

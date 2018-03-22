@@ -1,4 +1,6 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace Otiose.Input
 {
@@ -36,7 +38,7 @@ namespace Otiose.Input
             {
                 var analogMapping = Profile.AnalogMappings[i];
                 var analogControl = AddControl(analogMapping.Target, analogMapping.Handle);
-
+                
                 analogControl.Sensitivity = Math.Min(Profile.Sensitivity, analogMapping.Sensitivity);
                 analogControl.LowerDeadZone = Math.Max(Profile.LowerDeadZone, analogMapping.LowerDeadZone);
                 analogControl.UpperDeadZone = Math.Min(Profile.UpperDeadZone, analogMapping.UpperDeadZone);

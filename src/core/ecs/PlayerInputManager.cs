@@ -17,39 +17,36 @@ namespace Otiose.Input.Setup
             Targeting,
             RingMenu
 
-        };
-
-        public Stack<ControllerProfile> _controllerProfileStack;
-        public ControllerProfile ControllerProfile
-        {
-            get
-            {
-                return _controllerProfileStack.Peek();
-            }
         }
 
-        public List<CommandInvoker> _playerCommandList;
-        public PlayerManager _playerManager;
+        public PlayerInputManager(PlayerIndex playerIndex)
+        {
+            InputDevice inputDevice = InputManager.Devices[(int) playerIndex]; 
+            playerManager = null; 
+            playerCommandList = new List<CommandInvoker>();
+            CharacterActions = new InputActionSet(inputDevice);
+            controllerProfileStack = new Stack<ControllerProfile>();
+            EnterControlProfile(ControlProfile.Roam);
+            BindControls();
+        }
+
+        public Stack<ControllerProfile> controllerProfileStack;
+        public ControllerProfile ControllerProfile => controllerProfileStack.Peek();
+
+        public List<CommandInvoker> playerCommandList;
+        public PlayerManager playerManager;
         public InputActionSet CharacterActions;
 
         public override void onAddedToEntity () {
-            _playerManager = null; //gameObject.GetComponent<PlayerManager>();
-            _playerCommandList = new List<CommandInvoker>();
-            CharacterActions = new InputActionSet();
-            _controllerProfileStack = new Stack<ControllerProfile>();
-            EnterControlProfile(ControlProfile.Roam);
-
-//            _playerDevice = InputManager.ActiveDevice;
-            BindControls();
+            
         }
 
         public void CheckInput()
         {
-//            CharacterActions.Update(Game1.ticks, Game1.delta);
-//            InputManager.ActiveDevice.ClearInputState();
             Command _command;
             CommandInvoker _invoker;
-
+            
+            
             //////////////////////////////////////////////
             //               Action 1  (Attack)         //
             //////////////////////////////////////////////
@@ -57,20 +54,20 @@ namespace Otiose.Input.Setup
             {
                 _command = new Action1WasPressed(ControllerProfile);
                 _invoker = new CommandInvoker(_command);
-                _playerCommandList.Add(_invoker);
+                playerCommandList.Add(_invoker);
                 
             }
             if (CharacterActions.PlayerAction1.WasReleased)
             {
                 _command = new Action1WasReleased(ControllerProfile);
                 _invoker = new CommandInvoker(_command);
-                _playerCommandList.Add(_invoker);
+                playerCommandList.Add(_invoker);
             }
             if (CharacterActions.PlayerAction1.IsPressed)
             {
                 _command = new Action1IsPressed(ControllerProfile);
                 _invoker = new CommandInvoker(_command);
-                _playerCommandList.Add(_invoker);
+                playerCommandList.Add(_invoker);
             }
             ///////////////////////////////////////////////
             //               Action 2 (Run)              //
@@ -79,19 +76,19 @@ namespace Otiose.Input.Setup
             {
                 _command = new Action2WasPressed(ControllerProfile);
                 _invoker = new CommandInvoker(_command);
-                _playerCommandList.Add(_invoker);
+                playerCommandList.Add(_invoker);
             }
             if (CharacterActions.PlayerAction2.WasReleased)
             {
                 _command = new Action2WasReleased(ControllerProfile);
                 _invoker = new CommandInvoker(_command);
-                _playerCommandList.Add(_invoker);
+                playerCommandList.Add(_invoker);
             }
             if (CharacterActions.PlayerAction2.IsPressed)
             {
                 _command = new Action2IsPressed(ControllerProfile);
                 _invoker = new CommandInvoker(_command);
-                _playerCommandList.Add(_invoker);
+                playerCommandList.Add(_invoker);
             }
 
             ///////////////////////////////////////////////
@@ -101,20 +98,20 @@ namespace Otiose.Input.Setup
             {
                 _command = new RightBumperWasPressed(ControllerProfile);
                 _invoker = new CommandInvoker(_command);
-                _playerCommandList.Add(_invoker);
+                playerCommandList.Add(_invoker);
             }
             if (CharacterActions.RightBumper.WasReleased)
             {
                 
                 _command = new RightBumperWasReleased(ControllerProfile);
                 _invoker = new CommandInvoker(_command);
-                _playerCommandList.Add(_invoker);
+                playerCommandList.Add(_invoker);
             }
             if (CharacterActions.RightBumper.IsPressed)
             {
                 _command = new RightBumperIsPressed(ControllerProfile);
                 _invoker = new CommandInvoker(_command);
-                _playerCommandList.Add(_invoker);
+                playerCommandList.Add(_invoker);
             }
 
             ///////////////////////////////////////////////
@@ -124,19 +121,19 @@ namespace Otiose.Input.Setup
             {
                 _command = new LeftBumperWasPressed(ControllerProfile);
                 _invoker = new CommandInvoker(_command);
-                _playerCommandList.Add(_invoker);
+                playerCommandList.Add(_invoker);
             }
             if (CharacterActions.LeftBumper.WasReleased)
             {
                 _command = new LeftBumperWasReleased(ControllerProfile);
                 _invoker = new CommandInvoker(_command);
-                _playerCommandList.Add(_invoker);
+                playerCommandList.Add(_invoker);
             }
             if (CharacterActions.LeftBumper.IsPressed)
             {
                 _command = new LeftBumperIsPressed(ControllerProfile);
                 _invoker = new CommandInvoker(_command);
-                _playerCommandList.Add(_invoker);
+                playerCommandList.Add(_invoker);
             }
 
             //////////////////////////////////////////////
@@ -147,21 +144,21 @@ namespace Otiose.Input.Setup
                 //_playerManager.setFacingDirection(CharacterActions.LSMove.Value+_playerManager.RigidBody.position);
                 _command = new LeftStickWasPressed(ControllerProfile, CharacterActions.LSMove);
                 _invoker = new CommandInvoker(_command);
-                _playerCommandList.Add(_invoker);
+                playerCommandList.Add(_invoker);
             }
             if (CharacterActions.LSMove.IsPressed)
             {
                 //_playerManager.setFacingDirection(CharacterActions.LSMove.Value + _playerManager.RigidBody.position);
                 _command = new LeftStickIsPressed(ControllerProfile, CharacterActions.LSMove);
                 _invoker = new CommandInvoker(_command);
-                _playerCommandList.Add(_invoker);
+                playerCommandList.Add(_invoker);
             }
             if (CharacterActions.LSMove.WasReleased)
             {
 
                 _command = new LeftStickWasReleased(ControllerProfile, CharacterActions.LSMove);
                 _invoker = new CommandInvoker(_command);
-                _playerCommandList.Add(_invoker);
+                playerCommandList.Add(_invoker);
             }
 
             //////////////////////////////////////////////
@@ -172,31 +169,31 @@ namespace Otiose.Input.Setup
                 //_playerManager.setFacingDirection(CharacterActions.LSMove.Value+_playerManager.RigidBody.position);
                 _command = new RightStickWasPressed(ControllerProfile, CharacterActions.RSMove);
                 _invoker = new CommandInvoker(_command);
-                _playerCommandList.Add(_invoker);
+                playerCommandList.Add(_invoker);
             }
             if (CharacterActions.RSMove.IsPressed)
             {
                 //_playerManager.setFacingDirection(CharacterActions.LSMove.Value + _playerManager.RigidBody.position);
                 _command = new RightStickIsPressed(ControllerProfile, CharacterActions.RSMove);
                 _invoker = new CommandInvoker(_command);
-                _playerCommandList.Add(_invoker);
+                playerCommandList.Add(_invoker);
             }
             if (CharacterActions.RSMove.WasReleased)
             {
                 _command = new RightStickWasReleased(ControllerProfile, CharacterActions.RSMove);
                 _invoker = new CommandInvoker(_command);
-                _playerCommandList.Add(_invoker);
+                playerCommandList.Add(_invoker);
             }
 
-            if (_playerCommandList.Count > 0)
+            if (playerCommandList.Count > 0)
             {
-                foreach (CommandInvoker item in _playerCommandList)
+                foreach (CommandInvoker item in playerCommandList)
                 {
                     item.Init();
                     
                 }
             }
-            _playerCommandList.Clear();
+            playerCommandList.Clear();
         }
 
         public void EnterControlProfile(ControlProfile profile)
@@ -204,11 +201,11 @@ namespace Otiose.Input.Setup
             switch (profile)
             {
                 case ControlProfile.Roam:
-                    _controllerProfileStack.Push(new RoamControllerProfile(_playerManager));
+                    controllerProfileStack.Push(new RoamControllerProfile(playerManager));
                     break;
 
                 default:
-                    _controllerProfileStack.Push(new RoamControllerProfile(_playerManager));
+                    controllerProfileStack.Push(new RoamControllerProfile(playerManager));
                     break;
             }
             
@@ -217,18 +214,18 @@ namespace Otiose.Input.Setup
         public void ExitControlProfile()
         {
             
-            _controllerProfileStack.Pop();
+            controllerProfileStack.Pop();
         }
 
         public void update()
         {
             CheckInput();
-            CharacterActions.Update(Game1.ticks, Game1.delta);
+//            CharacterActions.Update(Game1.ticks, Game1.delta);
         }
 
         private void BindControls()
         {
-            CharacterActions.Device = InputManager.ActiveDevice;
+//            CharacterActions.Device = InputManager.ActiveDevice;
             CharacterActions.LSLeft.AddDefaultBinding(Keys.Left);
             CharacterActions.LSLeft.AddDefaultBinding(InputControlType.LeftStickLeft);
             CharacterActions.LSRight.AddDefaultBinding(Keys.Right);

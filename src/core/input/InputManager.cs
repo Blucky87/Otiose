@@ -106,8 +106,6 @@ namespace Otiose
             IsSetup = true;
 
 
-		    XInputDeviceManager.Enable();
-
             if (OnSetup != null)
             {
                 OnSetup.Invoke();

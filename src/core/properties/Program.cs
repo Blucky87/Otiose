@@ -15,7 +15,7 @@ namespace Otiose
         static void Main()
         {
 
-            int secondsToSleep = 5;
+            int secondsToSleep = 4;
 
             while (secondsToSleep > 0)
             {

@@ -1,30 +1,20 @@
 ﻿
-using System;
-using System.Collections.Generic;
+
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+
 using Nez;
-using Nez.Console;
-using Nez.Textures;
-using Nez.Sprites;
-using Nez.UI;
+
+using Otiose.Input;
 using Otiose.Input.Setup;
-using Otiose.Sprites;
+
 
 
 namespace Otiose
 {
     public class Game1 : Core
     {
-        public Game1() : base() {
-            
-        }
 
-        Scene otherScene;
-        public static ulong ticks = 0;
-        public static float delta = 0;
+
         
         protected override void Initialize()
         {
@@ -32,35 +22,31 @@ namespace Otiose
             //Window.ClientSizeChanged += Core;
             
             Window.AllowUserResizing = true;
+            
             InputManager.Setup();
+            InputManager.AddDeviceManager(new XInputDeviceManager());
+
+
             
             // create our Scene with the DefaultRenderer and a clear color of CornflowerBlue
             var myScene = Scene.createWithDefaultRenderer();
             
             Entity entity = myScene.createEntity("Entity1");
-            entity.transform.position = new Vector2( 300, 300 );
             
-            string scmlpath = "GreyGuy/player";
-            
-            entity.addComponent(new PlayerInputManager());
+            entity.addComponent(new PlayerInputManager(PlayerIndex.One));
             
             //entity.getComponent<SpriteAnimator>().play("walk");
             // set the scene so Nez can take over
-            Core.scene = myScene;
+
+            scene = myScene;
             
             base.Initialize();
         }
 
 
         protected override void Update(GameTime gametime) {
+            InputManager.Update();
 
-          if(Nez.Input.currentKeyboardState.IsKeyDown(Keys.A))
-          {
-            Console.WriteLine("ah yo");
-          }
-            
-            ticks++;
-            delta = gametime.ElapsedGameTime.Milliseconds;
 //          if (Nez.Input.leftMouseButtonDown)
 //          {
 //            Debug.log(Nez.Input.scaledMousePosition);
