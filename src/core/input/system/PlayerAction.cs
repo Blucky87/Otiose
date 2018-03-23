@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework.Input;
-using Nez;
 
 namespace Otiose.Input
 {
@@ -51,7 +48,7 @@ namespace Otiose.Input
 
         readonly ReadOnlyCollection<BindingSource> bindings;
 
-        readonly static BindingSourceListener[] bindingSourceListeners = new BindingSourceListener[] {
+        readonly static BindingSourceListener[] bindingSourceListeners = {
             new DeviceBindingSourceListener(),
             new UnknownDeviceBindingSourceListener(),
             new KeyBindingSourceListener(),
@@ -244,7 +241,7 @@ namespace Otiose.Input
                 return false;
             }
 
-            var index = regularBindings.IndexOf(findBinding);
+            int index = regularBindings.IndexOf(findBinding);
             if (index < 0)
             {
                 Console.Write("Binding source to replace is not present in this action.");
@@ -274,7 +271,7 @@ namespace Otiose.Input
                 return false;
             }
 
-            var foundBinding = FindBinding(binding);
+            BindingSource foundBinding = FindBinding(binding);
             if (foundBinding == null)
             {
                 return false;
@@ -494,25 +491,13 @@ namespace Otiose.Input
         /// <summary>
         /// Gets a value indicating whether this action is listening for new user defined bindings.
         /// </summary>
-        public bool IsListeningForBinding
-        {
-            get
-            {
-                return Owner.listenWithAction == this;
-            }
-        }
+        public bool IsListeningForBinding => Owner.listenWithAction == this;
 
 
         /// <summary>
         /// Gets the current bindings for this action as a readonly collection.
         /// </summary>
-        public ReadOnlyCollection<BindingSource> Bindings
-        {
-            get
-            {
-                return bindings;
-            }
-        }
+        public ReadOnlyCollection<BindingSource> Bindings => bindings;
 
 
         void RemoveOrphanedBindings()
@@ -527,7 +512,7 @@ namespace Otiose.Input
             }
         }
 
-
+        //todo luckenbill
         internal void Update(ulong updateTick, float deltaTime, InputDevice device)
         {
             Device = device;

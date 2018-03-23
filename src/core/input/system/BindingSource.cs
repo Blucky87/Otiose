@@ -128,13 +128,7 @@ namespace Otiose.Input
         internal PlayerAction BoundTo { get; set; }
 
 
-        internal virtual bool IsValid
-        {
-            get
-            {
-                return true;
-            }
-        }
+        internal virtual bool IsValid => true;
 
         #endregion
     }

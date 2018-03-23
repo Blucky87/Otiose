@@ -55,7 +55,7 @@ namespace Otiose
         /// </summary>
         public static bool IsSetup { get; private set; }
 
-        internal string Platform { get; private set; }
+        internal static string Platform { get; private set; }
 
         
         public void Setup()
