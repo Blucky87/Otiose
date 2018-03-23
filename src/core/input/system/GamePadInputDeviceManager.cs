@@ -10,19 +10,20 @@ using Nez;
 
 namespace Otiose.Input
 {
-    public class XInputDeviceManager : InputDeviceManager
+    public class GamePadInputDeviceManager : InputDeviceManager
     {
-        bool[] deviceConnected = new bool[] { false, false, false, false };
+        bool[] deviceConnected;
 
-        const int maxDevices = 4;
-        RingBuffer<GamePadState>[] gamePadState = new RingBuffer<GamePadState>[maxDevices];
+        public const int maxDevices = 4;
+        RingBuffer<GamePadState>[] gamePadState;
         Thread thread;
         int timeStep;
         int bufferSize;
 
 
-        public XInputDeviceManager()
+        public GamePadInputDeviceManager()
         {
+            
             if (InputManager.XInputUpdateRate == 0)
             {
                 timeStep = Mathf.floorToInt(Time.deltaTime * 1000.0f);
@@ -43,12 +44,9 @@ namespace Otiose.Input
 
             for (int deviceIndex = 0; deviceIndex < maxDevices; deviceIndex++)
             {
-                XInputDevice xInputDevice = new XInputDevice(deviceIndex, this);
-                devices.Add(xInputDevice);
-                InputManager.AttachDevice(xInputDevice);
+                GamePadInputDevice gamePad = new GamePadInputDevice(deviceIndex, this);
+                devices.Add(gamePad);
             }
-
-            Update(0, 0.0f);
         }
         
         void StartWorker()
@@ -77,6 +75,7 @@ namespace Otiose.Input
         {
             while (true)
             {
+                
                 for (int deviceIndex = 0; deviceIndex < maxDevices; deviceIndex++)
                 {
                     gamePadState[deviceIndex].Enqueue(GamePad.GetState((PlayerIndex)deviceIndex));
@@ -93,19 +92,22 @@ namespace Otiose.Input
         }
 
 
-        public override void Update(ulong updateTick, float deltaTime)
+        public override InputDevice GetPlayerInputDevice(PlayerIndex playerIndex)
         {
-            for (int deviceIndex = 0; deviceIndex < maxDevices; deviceIndex++)
-            {
-                var device = devices[deviceIndex] as XInputDevice;
+            return devices[(int)playerIndex];
+        }
 
-                // Unconnected devices won't be updated otherwise, so poll here.
+        public override void Update()
+        {
+            foreach (InputDevice inputDevice in devices)
+            {
+                var device = (GamePadInputDevice) inputDevice;
                 if (!device.IsConnected)
                 {
                     device.GetState();
                 }
-
-                if (device.IsConnected != deviceConnected[deviceIndex])
+                
+                if (device.IsConnected != deviceConnected[device.DeviceIndex])
                 {
                     if (device.IsConnected)
                     {
@@ -116,41 +118,31 @@ namespace Otiose.Input
                         InputManager.DetachDevice(device);
                     }
 
-                    deviceConnected[deviceIndex] = device.IsConnected;
-                    
-                    Console.WriteLine($"{device.Name} connected");
+                    deviceConnected[device.DeviceIndex] = device.IsConnected;
                 }
+                
+                devices.FindAll(x => x.IsAttached).ForEach(x => x.Update());
             }
+            
         }
 
 
         public override void Destroy()
         {
             StopWorker();
+            
+            foreach (InputDevice device in devices)
+            {
+                device.StopVibration();
+                
+            }
+            
+            devices.Clear();
         }
 
 
         public static bool CheckPlatformSupport(ICollection<string> errors)
         {
-/*            if (MediaTypeNames.Application.platform != RuntimePlatform.WindowsPlayer &&
-                MediaTypeNames.Application.platform != RuntimePlatform.WindowsEditor)
-            {
-                return false;
-            }
-
-            try
-            {
-                GamePad.GetState(PlayerIndex.One);
-            }
-            catch (DllNotFoundException e)
-            {
-                if (errors != null)
-                {
-                    errors.Add(e.Message + ".dll could not be found or is missing a dependency.");
-                }
-                return false;
-            }
-*/
             return true;
         }
 
@@ -158,16 +150,10 @@ namespace Otiose.Input
         internal static void Enable()
         {
             var errors = new List<string>();
-            if (XInputDeviceManager.CheckPlatformSupport(errors))
+            if (CheckPlatformSupport(errors))
             {
-/*              InputManager.HideDevicesWithProfile(typeof(Xbox360WinProfile));
-                InputManager.HideDevicesWithProfile(typeof(XboxOneWinProfile));
-                InputManager.HideDevicesWithProfile(typeof(XboxOneWin10Profile));
-                InputManager.HideDevicesWithProfile(typeof(LogitechF310ModeXWinProfile));
-                InputManager.HideDevicesWithProfile(typeof(LogitechF510ModeXWinProfile));
-                InputManager.HideDevicesWithProfile(typeof(LogitechF710ModeXWinProfile));
-                InputManager.AddDeviceManager<XInputDeviceManager>();
-*/
+
+                
             }
             else
             {

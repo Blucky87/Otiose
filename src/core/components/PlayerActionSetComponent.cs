@@ -2,13 +2,14 @@
 using System.Security.Cryptography.X509Certificates;
 using Nez;
 using Otiose;
+using Otiose.Input;
 using Otiose.Input.Setup;
 
 namespace Core.components
 {
-    public class CharacterActionSetComponent : Component
+    public class PlayerActionSetComponent : Component
     {
-//        public InputActionSet 
-            
+        public PlayerActionSet PlayerActionSet;
+
     }
 }

@@ -11,7 +11,7 @@ namespace Otiose.Input
         public bool IsButton { get; protected set; }
         public bool IsAnalog { get; protected set; }
 
-        ulong zeroTick;
+        uint zeroTick;
 
 
         private InputControl() : base()

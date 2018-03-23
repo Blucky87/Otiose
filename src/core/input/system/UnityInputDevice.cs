@@ -77,7 +77,7 @@ namespace Otiose.Input
                 if (!(analogMapping.IgnoreInitialZeroValue && targetControl.IsOnZeroTick && Utility.IsZero(analogValue)))
                 {
                     var mappedValue = analogMapping.MapValue(analogValue);
-                    targetControl.UpdateWithValue(mappedValue, updateTick, deltaTime);
+                    targetControl.UpdateWithValue(mappedValue);
                 }
             }
 

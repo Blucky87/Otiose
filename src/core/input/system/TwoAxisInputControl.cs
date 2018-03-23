@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Nez;
 
 namespace Otiose.Input
 {
@@ -17,6 +18,8 @@ namespace Otiose.Input
 
         public float LowerDeadZone = 0.0f;
         public float UpperDeadZone = 1.0f;
+        
+        float stateThreshold = 0.0f;
 
         public bool Raw;
 
@@ -36,7 +39,6 @@ namespace Otiose.Input
             Down = new OneAxisInputControl();
         }
 
-
         public void ClearInputState()
         {
             Left.ClearInputState();
@@ -54,13 +56,13 @@ namespace Otiose.Input
 
 
         // TODO: Is there a better way to handle this? Maybe calculate deltaTime internally.
-        public void Filter(TwoAxisInputControl twoAxisInputControl, float deltaTime)
+        public void Filter(TwoAxisInputControl twoAxisInputControl)
         {
-            UpdateWithAxes(twoAxisInputControl.X, twoAxisInputControl.Y, InputManager.CurrentTick, deltaTime);
+            UpdateWithAxes(twoAxisInputControl.X, twoAxisInputControl.Y);
         }
 
 
-        internal void UpdateWithAxes(float x, float y, ulong updateTick, float deltaTime)
+        internal void UpdateWithAxes(float x, float y)
         {
             lastState = thisState;
             lastValue = thisValue;
@@ -70,18 +72,18 @@ namespace Otiose.Input
             X = thisValue.X;
             Y = thisValue.Y;
 
-            Left.CommitWithValue(Math.Max(0.0f, -X), updateTick, deltaTime);
-            Right.CommitWithValue(Math.Max(0.0f, X), updateTick, deltaTime);
+            Left.CommitWithValue(Math.Max(0.0f, -X));
+            Right.CommitWithValue(Math.Max(0.0f, X));
 
             if (InputManager.InvertYAxis)
             {
-                Up.CommitWithValue(Math.Max(0.0f, -Y), updateTick, deltaTime);
-                Down.CommitWithValue(Math.Max(0.0f, Y), updateTick, deltaTime);
+                Up.CommitWithValue(Math.Max(0.0f, -Y));
+                Down.CommitWithValue(Math.Max(0.0f, Y));
             }
             else
             {
-                Up.CommitWithValue(Math.Max(0.0f, Y), updateTick, deltaTime);
-                Down.CommitWithValue(Math.Max(0.0f, -Y), updateTick, deltaTime);
+                Up.CommitWithValue(Math.Max(0.0f, Y));
+                Down.CommitWithValue(Math.Max(0.0f, -Y));
             }
 
             thisState = Up.State || Down.State || Left.State || Right.State;
@@ -97,7 +99,7 @@ namespace Otiose.Input
 
             if (thisValue != lastValue)
             {
-                UpdateTick = updateTick;
+                UpdateTick = Time.frameCount;
                 HasChanged = true;
             }
             else
@@ -105,9 +107,7 @@ namespace Otiose.Input
                 HasChanged = false;
             }
         }
-
-
-        float stateThreshold = 0.0f;
+        
         public float StateThreshold
         {
             set
@@ -119,42 +119,18 @@ namespace Otiose.Input
                 Down.StateThreshold = value;
             }
 
-            get
-            {
-                return stateThreshold;
-            }
+            get => stateThreshold;
         }
 
+        public bool State => thisState;
 
-        public bool State
-        {
-            get { return thisState; }
-        }
+        public bool LastState => lastState;
 
+        public Vector2 Value => thisValue;
 
-        public bool LastState
-        {
-            get { return lastState; }
-        }
+        public Vector2 LastValue => lastValue;
 
-
-        public Vector2 Value
-        {
-            get { return thisValue; }
-        }
-
-
-        public Vector2 LastValue
-        {
-            get { return lastValue; }
-        }
-
-
-        public Vector2 Vector
-        {
-            get { return thisValue; }
-        }
-
+        public Vector2 Vector => thisValue;
 
         public bool HasChanged
         {
@@ -162,49 +138,19 @@ namespace Otiose.Input
             protected set;
         }
 
+        public bool IsPressed => thisState;
 
-        public bool IsPressed
-        {
-            get { return thisState; }
-        }
+        public bool WasPressed => thisState && !lastState;
 
+        public bool WasReleased => !thisState && lastState;
 
-        public bool WasPressed
-        {
-            get { return thisState && !lastState; }
-        }
+        public float Angle => Utility.VectorToAngle(thisValue);
 
+        public static implicit operator bool(TwoAxisInputControl instance) => instance.thisState;
 
-        public bool WasReleased
-        {
-            get { return !thisState && lastState; }
-        }
+        public static implicit operator Vector2(TwoAxisInputControl instance) => instance.thisValue;
 
-
-        public float Angle
-        {
-            get
-            {
-                return Utility.VectorToAngle(thisValue);
-            }
-        }
-
-
-        public static implicit operator bool(TwoAxisInputControl instance)
-        {
-            return instance.thisState;
-        }
-
-
-        public static implicit operator Vector2(TwoAxisInputControl instance)
-        {
-            return instance.thisValue;
-        }
-
-
-        public static implicit operator Vector3(TwoAxisInputControl instance) {
-            return new Vector3(instance.thisValue.X, instance.thisValue.Y, 0);
-        }
+        public static implicit operator Vector3(TwoAxisInputControl instance) => new Vector3(instance.thisValue.X, instance.thisValue.Y, 0);
     }
 }
 

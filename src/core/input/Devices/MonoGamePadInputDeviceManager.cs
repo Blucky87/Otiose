@@ -2,9 +2,9 @@
 
 namespace Otiose.Devices
 {
-    public class MonoGamePadInputDeviceManager : InputDeviceManager
+    public class MonoGamePadInputDeviceManager 
     {
-        public override void Update(ulong updateTick, float deltaTime)
+        public  void Update(ulong updateTick, float deltaTime)
         {
             throw new System.NotImplementedException();
         }

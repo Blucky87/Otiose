@@ -12,26 +12,22 @@ namespace Otiose
     public class InputManager : IUpdatableManager
     {
         
-
         public static event Action OnSetup;
-        public static event Action<ulong, float> OnUpdate;
+        public static event Action OnUpdate;
         public static event Action OnReset;
 
         public static event Action<InputDevice> OnDeviceAttached;
         public static event Action<InputDevice> OnDeviceDetached;
         public static event Action<InputDevice> OnActiveDeviceChanged;
 
-        internal static event Action<ulong, float> OnUpdateDevices;
-        internal static event Action<ulong, float> OnCommitDevices;
+        internal static event Action OnUpdateDevices;
+        internal static event Action OnCommitDevices;
 
+        public static readonly List<InputDevice> devices = new List<InputDevice>();
         static List<InputDeviceManager> deviceManagers = new List<InputDeviceManager>();
         static Dictionary<Type, InputDeviceManager> deviceManagerTable = new Dictionary<Type, InputDeviceManager>();
 
         static InputDevice activeDevice = InputDevice.Null;
-        static List<InputDevice> devices = new List<InputDevice>();
-
-        static List<PlayerActionSet> playerActionSets = new List<PlayerActionSet>();
-
 
         /// <summary>
         /// A readonly collection of devices.
@@ -59,45 +55,37 @@ namespace Otiose
         /// </summary>
         public static bool IsSetup { get; private set; }
 
-        internal static string Platform { get; private set; }
-
-        static float initialTime;
-        static float currentTime;
-        static float lastUpdateTime;
-        static ulong currentTick;
-        
+        internal string Platform { get; private set; }
 
         
-        public static void Setup()
+        public void Setup()
         {
             SetupInternal();
+            
+#if true
+            SetupPCDevices();
+#endif
+
+//            SetupGamePadDevices();
         }
 
+        private void SetupPCDevices()
+        {
+            //
+        }
 
-        internal static bool SetupInternal()
+        private bool SetupInternal()
         {
             if (IsSetup)
             {
                 return false;
             }
-            
-            Debug.log("Setting up Input Manager");
-
-            initialTime = 0.0f;
-            currentTime = 0.0f;
-            lastUpdateTime = 0.0f;
-            currentTick = 0;
 
             deviceManagers.Clear();
             deviceManagerTable.Clear();
-            devices.Clear();
-            Devices = new ReadOnlyCollection<InputDevice>(devices);
             activeDevice = InputDevice.Null;
 
-            playerActionSets.Clear();
-
             IsSetup = true;
-
 
             if (OnSetup != null)
             {
@@ -108,20 +96,13 @@ namespace Otiose
             return true;
         }
 
-
-        /// <summary>
-        /// DEPRECATED: Use the InControlManager component instead.
-        /// </summary>
-        /// @deprecated
-        /// Calling this method directly is no longer supported. Use the InControlManager component to
-        /// manage the lifecycle of the input manager instead.
-        
-        public static void Reset()
+        public void Reset()
         {
             ResetInternal();
+            Setup();
         }
 
-        internal static void ResetInternal()
+        internal void ResetInternal()
         {
             if (OnReset != null)
             {
@@ -138,9 +119,6 @@ namespace Otiose
             OnCommitDevices = null;
 
             DestroyDeviceManagers();
-            DestroyDevices();
-
-            playerActionSets.Clear();
 
             IsSetup = false;
         }
@@ -151,16 +129,10 @@ namespace Otiose
         //
         public void update()
         {
-            Update();
-        }
-        
-        
-        public static void Update()
-        {
             UpdateInternal();
         }
 
-        internal static void UpdateInternal()
+        private void UpdateInternal()
         {
             AssertIsSetup();
             if (OnSetup != null)
@@ -169,38 +141,25 @@ namespace Otiose
                 OnSetup = null;
             }
 
-            currentTick++;
-            UpdateCurrentTime();
-            var deltaTime = currentTime - lastUpdateTime;
-
-            UpdateDeviceManagers(deltaTime);
-
-            MenuWasPressed = false;
-            UpdateDevices(deltaTime);
-            CommitDevices(deltaTime);
-
-            UpdatePlayerActionSets(deltaTime);
-
+            UpdateDeviceManagers();
+            CommitDeviceManagers();
+            
             UpdateActiveDevice();
 
             if (OnUpdate != null)
             {
-                OnUpdate.Invoke(currentTick, deltaTime);
+                OnUpdate.Invoke();
             }
 
-            lastUpdateTime = currentTime;
         }
 
-
-        /// <summary>
-        /// Force the input manager to reset and setup.
-        /// </summary>
-        public static void Reload()
+        private void CommitDeviceManagers()
         {
-            ResetInternal();
-            SetupInternal();
+            foreach (InputDeviceManager inputDeviceManager in deviceManagers)
+            {
+                inputDeviceManager.Commit();
+            }
         }
-
 
         static void AssertIsSetup()
         {
@@ -210,22 +169,11 @@ namespace Otiose
             }
         }
 
-
         static void SetZeroTickOnAllControls()
         {
-            int deviceCount = devices.Count;
-            for (int i = 0; i < deviceCount; i++)
+            foreach (InputDeviceManager inputDeviceManager in deviceManagers)
             {
-                var controls = devices[i].Controls;
-                var controlCount = controls.Length;
-                for (int j = 0; j < controlCount; j++)
-                {
-                    var control = controls[j];
-                    if (control != null)
-                    {
-                        control.SetZeroTick();
-                    }
-                }
+                inputDeviceManager.SetZeroTick();
             }
         }
 
@@ -268,14 +216,12 @@ namespace Otiose
 
         internal static void OnApplicationQuit()
         {
-            ResetInternal();
         }
 
 
         internal static void OnLevelWasLoaded()
         {
             SetZeroTickOnAllControls();
-            UpdateInternal();
         }
 
 
@@ -293,14 +239,11 @@ namespace Otiose
 
             if (deviceManagerTable.ContainsKey(type))
             {
-                //DebugConsole.instance.log("A device manager of type '" + type.Name + "' already exists; cannot add another.");
                 return;
             }
 
             deviceManagers.Add(deviceManager);
             deviceManagerTable.Add(type, deviceManager);
-
-            deviceManager.Update(currentTick, currentTime - lastUpdateTime);
         }
 
 
@@ -308,7 +251,7 @@ namespace Otiose
         /// Adds a device manager by type.
         /// </summary>
         /// <typeparam name="T">A subclass of InputDeviceManager.</typeparam>
-        public static void AddDeviceManager<T>() where T : InputDeviceManager, new()
+        public void AddDeviceManager<T>() where T : InputDeviceManager, new()
         {
             AddDeviceManager(new T());
         }
@@ -318,7 +261,7 @@ namespace Otiose
         /// Get a device manager from the input manager by type if it one is present.
         /// </summary>
         /// <typeparam name="T">A subclass of InputDeviceManager.</typeparam>
-        public static T GetDeviceManager<T>() where T : InputDeviceManager
+        public T GetDeviceManager<T>() where T : InputDeviceManager
         {
             InputDeviceManager deviceManager;
             if (deviceManagerTable.TryGetValue(typeof(T), out deviceManager))
@@ -334,109 +277,40 @@ namespace Otiose
         /// Query whether a device manager is present by type.
         /// </summary>
         /// <typeparam name="T">A subclass of InputDeviceManager.</typeparam>
-        public static bool HasDeviceManager<T>() where T : InputDeviceManager
+        public bool HasDeviceManager<T>() where T : InputDeviceManager
         {
             return deviceManagerTable.ContainsKey(typeof(T));
         }
 
-
-        static void UpdateCurrentTime()
+        private void UpdateDeviceManagers()
         {
-            // Have to do this hack since Time.realtimeSinceStartup is not set until AFTER Awake().
-            if (initialTime < float.Epsilon)
+            foreach (InputDeviceManager deviceManager in deviceManagers)
             {
-                initialTime = Time.time;
-            }
-
-            currentTime = Math.Max(0.0f, Time.time - initialTime);
-        }
-
-
-        static void UpdateDeviceManagers(float deltaTime)
-        {
-            int inputDeviceManagerCount = deviceManagers.Count;
-            for (int i = 0; i < inputDeviceManagerCount; i++)
-            {
-                deviceManagers[i].Update(currentTick, deltaTime);
+                deviceManager.Update();
             }
         }
 
 
         static void DestroyDeviceManagers()
         {
-            int deviceManagerCount = deviceManagers.Count;
-            for (int i = 0; i < deviceManagerCount; i++)
+            foreach (InputDeviceManager deviceManager in deviceManagers)
             {
-                deviceManagers[i].Destroy();
+                deviceManager.Destroy();
             }
-
+           
             deviceManagers.Clear();
             deviceManagerTable.Clear();
         }
 
-
-        static void DestroyDevices()
+        private void UpdateActiveDevice()
         {
-            int deviceCount = devices.Count;
-            for (int i = 0; i < deviceCount; i++)
+            InputDevice lastActiveDevice = ActiveDevice;
+
+            foreach (InputDevice device in devices)
             {
-                var device = devices[i];
-                device.StopVibration();
-                device.IsAttached = false;
-            }
-            devices.Clear();
-            activeDevice = InputDevice.Null;
-        }
-
-
-        static void UpdateDevices(float deltaTime)
-        {
-            int deviceCount = devices.Count;
-            for (int i = 0; i < deviceCount; i++)
-            {
-                var device = devices[i];
-                device.Update(currentTick, deltaTime);
-            }
-
-            if (OnUpdateDevices != null)
-            {
-                OnUpdateDevices.Invoke(currentTick, deltaTime);
-            }
-        }
-
-
-        static void CommitDevices(float deltaTime)
-        {
-            int deviceCount = devices.Count;
-            for (int i = 0; i < deviceCount; i++)
-            {
-                var device = devices[i];
-                device.Commit(currentTick, deltaTime);
-
-                if (device.MenuWasPressed)
+                if (device.LastChangedAfter(ActiveDevice))
                 {
-                    MenuWasPressed = true;
-                }
-            }
-
-            if (OnCommitDevices != null)
-            {
-                OnCommitDevices.Invoke(currentTick, deltaTime);
-            }
-        }
-
-
-        static void UpdateActiveDevice()
-        {
-            var lastActiveDevice = ActiveDevice;
-
-            int deviceCount = devices.Count;
-            for (int i = 0; i < deviceCount; i++)
-            {
-                var inputDevice = devices[i];
-                if (inputDevice.LastChangedAfter(ActiveDevice))
-                {
-                    ActiveDevice = inputDevice;
+                    ActiveDevice = device;
                 }
             }
 
@@ -454,10 +328,9 @@ namespace Otiose
         /// Attach a device to the input manager.
         /// </summary>
         /// <param name="inputDevice">The input device to attach.</param>
-        public static void AttachDevice(InputDevice inputDevice)
+        internal static void AttachDevice(InputDevice inputDevice)
         {
             AssertIsSetup();
-            Console.WriteLine($"Attaching Device {inputDevice.Name}");
 
             if (!inputDevice.IsSupportedOnThisPlatform)
             {
@@ -471,7 +344,6 @@ namespace Otiose
             }
 
             devices.Add(inputDevice);
-            devices.Sort((d1, d2) => d1.SortOrder.CompareTo(d2.SortOrder));
 
             inputDevice.IsAttached = true;
 
@@ -486,7 +358,7 @@ namespace Otiose
         /// Detach a device from the input manager.
         /// </summary>
         /// <param name="inputDevice">The input device to attach.</param>
-        public static void DetachDevice(InputDevice inputDevice)
+        internal static void DetachDevice(InputDevice inputDevice)
         {
             if (!inputDevice.IsAttached)
             {
@@ -522,53 +394,10 @@ namespace Otiose
 
 
         /// <summary>
-        /// Hides the devices with a given profile.
-        /// This must be called before the input manager is initialized.
-        /// </summary>
-        /// <param name="type">Type.</param>
-
-
-
-        internal static void AttachPlayerActionSet(PlayerActionSet playerActionSet)
-        {
-            if (playerActionSets.Contains(playerActionSet))
-            {
-                System.Console.Write("Player action set is already attached.");
-            }
-            else
-            {
-                playerActionSets.Add(playerActionSet);
-            }
-        }
-
-
-        internal static void DetachPlayerActionSet(PlayerActionSet playerActionSet)
-        {
-            playerActionSets.Remove(playerActionSet);
-        }
-
-
-        internal static void UpdatePlayerActionSets(float deltaTime)
-        {
-            int playerActionSetCount = playerActionSets.Count;
-            for (int i = 0; i < playerActionSetCount; i++)
-            {
-                playerActionSets[i].Update(currentTick, deltaTime);
-            }
-        }
-
-
-        /// <summary>
         /// Detects whether any (keyboard) key is currently pressed.
         /// For more flexibility, see <see cref="KeyCombo.Detect()"/>
         /// </summary>
-        public static bool AnyKeyIsPressed
-        {
-            get
-            {
-                return KeyCombo.Detect(true).Count > 0;
-            }
-        }
+        public static bool AnyKeyIsPressed => KeyCombo.Detect(true).Count > 0;
 
 
         /// <summary>
@@ -578,15 +407,9 @@ namespace Otiose
         /// </summary>
         public static InputDevice ActiveDevice
         {
-            get
-            {
-                return (activeDevice == null) ? InputDevice.Null : activeDevice;
-            }
+            get => activeDevice ?? InputDevice.Null;
 
-            private set
-            {
-                activeDevice = (value == null) ? InputDevice.Null : value;
-            }
+            private set => activeDevice = value ?? InputDevice.Null;
         }
 
 
@@ -623,16 +446,5 @@ namespace Otiose
         /// </summary>
         public static bool EnableICade { get; internal set; }
 
-
-        
-
-
-        internal static ulong CurrentTick
-        {
-            get
-            {
-                return currentTick;
-            }
-        }
     }
 }

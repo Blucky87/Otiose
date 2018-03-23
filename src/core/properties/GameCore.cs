@@ -11,24 +11,18 @@ using Otiose.Input.Setup;
 
 namespace Otiose
 {
-    public class Game1 : Nez.Core
+    public class GameCore : Nez.Core
     {
-
-
-        
         protected override void Initialize()
         {
-            
-            InputManager.Setup();
-            
-            registerGlobalManager(new InputManager());
+            SetupInput();
+
             
             //Window.ClientSizeChanged += Core;
             
             Window.AllowUserResizing = true;
             
-            InputManager.Setup();
-            InputManager.AddDeviceManager(new XInputDeviceManager());
+            
 
 
             
@@ -78,6 +72,22 @@ namespace Otiose
             }
 */
             base.Update(gametime);
+        }
+
+
+
+
+        void SetupInput()
+        {
+            var maxGamePadInputs = 4;
+            var inputManager = new InputManager();
+            var gamePadInputDeviceManager = new GamePadInputDeviceManager(maxGamePadInputs);
+            
+            InputManager.Setup();
+            InputManager.AddDeviceManager(gamePadInputDeviceManager);
+            
+            
+            registerGlobalManager(inputManager);
         }
 
     }

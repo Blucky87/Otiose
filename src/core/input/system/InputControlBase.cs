@@ -8,7 +8,7 @@ namespace Otiose.Input
 {
     public abstract class InputControlBase : IInputControl
     {
-        public ulong UpdateTick { get; protected set; }
+        public uint UpdateTick { get; protected set; }
 
         float sensitivity = 1.0f;
         float lowerDeadZone = 0.0f;
@@ -22,7 +22,7 @@ namespace Otiose.Input
 
         internal bool Enabled = true;
 
-        ulong pendingTick;
+        uint pendingTick;
         bool pendingCommit;
 
         float nextRepeatTime;
@@ -36,8 +36,10 @@ namespace Otiose.Input
         InputControlState thisState;
 
 
-        void PrepareForUpdate(ulong updateTick)
+        void PrepareForUpdate()
         {
+            uint updateTick = Time.frameCount;
+            
             if (updateTick < pendingTick)
             {
                 throw new InvalidOperationException("Cannot be updated with an earlier tick.");
@@ -55,12 +57,13 @@ namespace Otiose.Input
                 pendingTick = updateTick;
                 pendingCommit = true;
             }
+            
         }
 
 
-        public bool UpdateWithState(bool state, ulong updateTick, float deltaTime)
+        public bool UpdateWithState(bool state)
         {
-            PrepareForUpdate(updateTick);
+            PrepareForUpdate();
 
             nextState.Set(state || nextState.State);
 
@@ -68,9 +71,9 @@ namespace Otiose.Input
         }
 
 
-        public bool UpdateWithValue(float value, ulong updateTick, float deltaTime)
+        public bool UpdateWithValue(float value)
         {
-            PrepareForUpdate(updateTick);
+            PrepareForUpdate();
 
             if (Utility.Abs(value) > Utility.Abs(nextState.RawValue))
             {
@@ -91,9 +94,9 @@ namespace Otiose.Input
         }
 
 
-        internal bool UpdateWithRawValue(float value, ulong updateTick, float deltaTime)
+        internal bool UpdateWithRawValue(float value)
         {
-            PrepareForUpdate(updateTick);
+            PrepareForUpdate();
 
             if (Utility.Abs(value) > Utility.Abs(nextState.RawValue))
             {
@@ -106,8 +109,10 @@ namespace Otiose.Input
         }
 
 
-        internal void SetValue(float value, ulong updateTick)
+        internal void SetValue(float value)
         {
+            uint updateTick = Time.frameCount;
+                
             if (updateTick > pendingTick)
             {
                 lastState = thisState;
@@ -179,163 +184,83 @@ namespace Otiose.Input
         }
 
 
-        public void CommitWithState(bool state, ulong updateTick, float deltaTime)
+        public void CommitWithState(bool state)
         {
-            UpdateWithState(state, updateTick, deltaTime);
+            UpdateWithState(state);
             Commit();
         }
 
 
-        public void CommitWithValue(float value, ulong updateTick, float deltaTime)
+        public void CommitWithValue(float value)
         {
-            UpdateWithValue(value, updateTick, deltaTime);
+            UpdateWithValue(value);
             Commit();
         }
 
 
-        public bool State
-        {
-            get
-            {
-                return Enabled && thisState.State;
-            }
-        }
+        public bool State => Enabled && thisState.State;
 
 
-        public bool LastState
-        {
-            get
-            {
-                return Enabled && lastState.State;
-            }
-        }
+        public bool LastState => Enabled && lastState.State;
 
 
-        public float Value
-        {
-            get
-            {
-                return Enabled ? thisState.Value : 0.0f;
-            }
-        }
+        public float Value => Enabled ? thisState.Value : 0.0f;
 
 
-        public float LastValue
-        {
-            get
-            {
-                return Enabled ? lastState.Value : 0.0f;
-            }
-        }
+        public float LastValue => Enabled ? lastState.Value : 0.0f;
 
 
-        public float RawValue
-        {
-            get
-            {
-                return Enabled ? thisState.RawValue : 0.0f;
-            }
-        }
+        public float RawValue => Enabled ? thisState.RawValue : 0.0f;
 
 
-        internal float NextRawValue
-        {
-            get
-            {
-                return Enabled ? nextState.RawValue : 0.0f;
-            }
-        }
+        internal float NextRawValue => Enabled ? nextState.RawValue : 0.0f;
 
 
-        public bool HasChanged
-        {
-            get
-            {
-                return Enabled && thisState != lastState;
-            }
-        }
+        public bool HasChanged => Enabled && thisState != lastState;
 
 
-        public bool IsPressed
-        {
-            get
-            {
-                return Enabled && thisState.State;
-            }
-        }
+        public bool IsPressed => Enabled && thisState.State;
 
 
-        public bool WasPressed
-        {
-            get
-            {
-                return Enabled && thisState && !lastState;
-            }
-        }
+        public bool WasPressed => Enabled && thisState && !lastState;
 
 
-        public bool WasReleased
-        {
-            get
-            {
-                return Enabled && !thisState && lastState;
-            }
-        }
+        public bool WasReleased => Enabled && !thisState && lastState;
 
 
-        public bool WasRepeated
-        {
-            get
-            {
-                return Enabled && wasRepeated;
-            }
-        }
+        public bool WasRepeated => Enabled && wasRepeated;
 
 
         public float Sensitivity
         {
-            get
-            {
-                return sensitivity;
-            }
-
-            set
-            {
-                sensitivity = Mathf.clamp01(value);
-            }
+            get => sensitivity;
+            set => sensitivity = Mathf.clamp01(value);
         }
 
 
         public float LowerDeadZone
         {
-            get { return lowerDeadZone; }
-            set { lowerDeadZone = Mathf.clamp01(value); }
+            get => lowerDeadZone;
+            set => lowerDeadZone = Mathf.clamp01(value);
         }
 
 
         public float UpperDeadZone
         {
-            get { return upperDeadZone; }
-            set { upperDeadZone = Mathf.clamp01(value); }
+            get => upperDeadZone;
+            set => upperDeadZone = Mathf.clamp01(value);
         }
 
 
         public float StateThreshold
         {
-            get { return stateThreshold; }
-            set { stateThreshold = Mathf.clamp01(value); }
+            get => stateThreshold;
+            set => stateThreshold = Mathf.clamp01(value);
         }
 
 
-        public static implicit operator bool(InputControlBase instance)
-        {
-            return instance.State;
-        }
+        public static implicit operator bool(InputControlBase instance) => instance.State;
 
-
-        public static implicit operator float(InputControlBase instance)
-        {
-            return instance.Value;
-        }
+        public static implicit operator float(InputControlBase instance) => instance.Value;
     }
 }

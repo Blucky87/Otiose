@@ -137,50 +137,50 @@ namespace Otiose.Input
         }
 
 
-        internal void UpdateWithState(InputControlType inputControlType, bool state, ulong updateTick, float deltaTime)
+        internal void UpdateWithState(InputControlType inputControlType, bool state)
         {
-            GetControl(inputControlType).UpdateWithState(state, updateTick, deltaTime);
+            GetControl(inputControlType).UpdateWithState(state);
         }
 
 
-        internal void UpdateWithValue(InputControlType inputControlType, float value, ulong updateTick, float deltaTime)
+        internal void UpdateWithValue(InputControlType inputControlType, float value)
         {
-            GetControl(inputControlType).UpdateWithValue(value, updateTick, deltaTime);
+            GetControl(inputControlType).UpdateWithValue(value);
         }
 
 
-        internal void UpdateLeftStickWithValue(Vector2 value, ulong updateTick, float deltaTime)
+        internal void UpdateLeftStickWithValue(Vector2 value)
         {
-            LeftStickLeft.UpdateWithValue(Math.Max(0.0f, -value.X), updateTick, deltaTime);
-            LeftStickRight.UpdateWithValue(Math.Max(0.0f, value.X), updateTick, deltaTime);
+            LeftStickLeft.UpdateWithValue(Math.Max(0.0f, -value.X));
+            LeftStickRight.UpdateWithValue(Math.Max(0.0f, value.X));
 
             if (InputManager.InvertYAxis)
             {
-                LeftStickUp.UpdateWithValue(Math.Max(0.0f, -value.Y), updateTick, deltaTime);
-                LeftStickDown.UpdateWithValue(Math.Max(0.0f, value.Y), updateTick, deltaTime);
+                LeftStickUp.UpdateWithValue(Math.Max(0.0f, -value.Y));
+                LeftStickDown.UpdateWithValue(Math.Max(0.0f, value.Y));
             }
             else
             {
-                LeftStickUp.UpdateWithValue(Math.Max(0.0f, value.Y), updateTick, deltaTime);
-                LeftStickDown.UpdateWithValue(Math.Max(0.0f, -value.Y), updateTick, deltaTime);
+                LeftStickUp.UpdateWithValue(Math.Max(0.0f, value.Y));
+                LeftStickDown.UpdateWithValue(Math.Max(0.0f, -value.Y));
             }
         }
 
 
-        internal void UpdateLeftStickWithRawValue(Vector2 value, ulong updateTick, float deltaTime)
+        internal void UpdateLeftStickWithRawValue(Vector2 value)
         {
-            LeftStickLeft.UpdateWithRawValue(Math.Max(0.0f, -value.X), updateTick, deltaTime);
-            LeftStickRight.UpdateWithRawValue(Math.Max(0.0f, value.X), updateTick, deltaTime);
+            LeftStickLeft.UpdateWithRawValue(Math.Max(0.0f, -value.X));
+            LeftStickRight.UpdateWithRawValue(Math.Max(0.0f, value.X));
 
             if (InputManager.InvertYAxis)
             {
-                LeftStickUp.UpdateWithRawValue(Math.Max(0.0f, -value.Y), updateTick, deltaTime);
-                LeftStickDown.UpdateWithRawValue(Math.Max(0.0f, value.Y), updateTick, deltaTime);
+                LeftStickUp.UpdateWithRawValue(Math.Max(0.0f, -value.Y));
+                LeftStickDown.UpdateWithRawValue(Math.Max(0.0f, value.Y));
             }
             else
             {
-                LeftStickUp.UpdateWithRawValue(Math.Max(0.0f, value.Y), updateTick, deltaTime);
-                LeftStickDown.UpdateWithRawValue(Math.Max(0.0f, -value.Y), updateTick, deltaTime);
+                LeftStickUp.UpdateWithRawValue(Math.Max(0.0f, value.Y));
+                LeftStickDown.UpdateWithRawValue(Math.Max(0.0f, -value.Y));
             }
         }
 
@@ -194,38 +194,38 @@ namespace Otiose.Input
         }
 
 
-        internal void UpdateRightStickWithValue(Vector2 value, ulong updateTick, float deltaTime)
+        internal void UpdateRightStickWithValue(Vector2 value)
         {
-            RightStickLeft.UpdateWithValue(Math.Max(0.0f, -value.X), updateTick, deltaTime);
-            RightStickRight.UpdateWithValue(Math.Max(0.0f, value.Y), updateTick, deltaTime);
+            RightStickLeft.UpdateWithValue(Math.Max(0.0f, -value.X));
+            RightStickRight.UpdateWithValue(Math.Max(0.0f, value.Y));
 
             if (InputManager.InvertYAxis)
             {
-                RightStickUp.UpdateWithValue(Math.Max(0.0f, -value.Y), updateTick, deltaTime);
-                RightStickDown.UpdateWithValue(Math.Max(0.0f, value.Y), updateTick, deltaTime);
+                RightStickUp.UpdateWithValue(Math.Max(0.0f, -value.Y));
+                RightStickDown.UpdateWithValue(Math.Max(0.0f, value.Y));
             }
             else
             {
-                RightStickUp.UpdateWithValue(Math.Max(0.0f, value.Y), updateTick, deltaTime);
-                RightStickDown.UpdateWithValue(Math.Max(0.0f, -value.Y), updateTick, deltaTime);
+                RightStickUp.UpdateWithValue(Math.Max(0.0f, value.Y));
+                RightStickDown.UpdateWithValue(Math.Max(0.0f, -value.Y));
             }
         }
 
 
-        internal void UpdateRightStickWithRawValue(Vector2 value, ulong updateTick, float deltaTime)
+        internal void UpdateRightStickWithRawValue(Vector2 value)
         {
-            RightStickLeft.UpdateWithRawValue(Math.Max(0.0f, -value.X), updateTick, deltaTime);
-            RightStickRight.UpdateWithRawValue(Math.Max(0.0f, value.X), updateTick, deltaTime);
+            RightStickLeft.UpdateWithRawValue(Math.Max(0.0f, -value.X));
+            RightStickRight.UpdateWithRawValue(Math.Max(0.0f, value.X));
 
             if (InputManager.InvertYAxis)
             {
-                RightStickUp.UpdateWithRawValue(Math.Max(0.0f, -value.Y), updateTick, deltaTime);
-                RightStickDown.UpdateWithRawValue(Math.Max(0.0f, value.Y), updateTick, deltaTime);
+                RightStickUp.UpdateWithRawValue(Math.Max(0.0f, -value.Y));
+                RightStickDown.UpdateWithRawValue(Math.Max(0.0f, value.Y));
             }
             else
             {
-                RightStickUp.UpdateWithRawValue(Math.Max(0.0f, value.Y), updateTick, deltaTime);
-                RightStickDown.UpdateWithRawValue(Math.Max(0.0f, -value.Y), updateTick, deltaTime);
+                RightStickUp.UpdateWithRawValue(Math.Max(0.0f, value.Y));
+                RightStickDown.UpdateWithRawValue(Math.Max(0.0f, -value.Y));
             }
         }
 
@@ -239,9 +239,8 @@ namespace Otiose.Input
         }
 
 
-        public virtual void Update(ulong updateTick, float deltaTime)
+        public virtual void Update()
         {
-            int i = 10;
             // Implemented by subclasses.
         }
 
@@ -261,7 +260,7 @@ namespace Otiose.Input
         }
 
 
-        internal void ProcessLeftStick(ulong updateTick, float deltaTime)
+        internal void ProcessLeftStick()
         {
             var x = Utility.ValueFromSides(LeftStickLeft.NextRawValue, LeftStickRight.NextRawValue);
             var y = Utility.ValueFromSides(LeftStickDown.NextRawValue, LeftStickUp.NextRawValue, InputManager.InvertYAxis);
@@ -279,22 +278,22 @@ namespace Otiose.Input
             }
 
             LeftStick.Raw = true;
-            LeftStick.UpdateWithAxes(v.X, v.Y, updateTick, deltaTime);
+            LeftStick.UpdateWithAxes(v.X, v.Y);
 
             LeftStickX.Raw = true;
-            LeftStickX.CommitWithValue(v.X, updateTick, deltaTime);
+            LeftStickX.CommitWithValue(v.X);
 
             LeftStickY.Raw = true;
-            LeftStickY.CommitWithValue(v.Y, updateTick, deltaTime);
+            LeftStickY.CommitWithValue(v.Y);
 
-            LeftStickLeft.SetValue(LeftStick.Left.Value, updateTick);
-            LeftStickRight.SetValue(LeftStick.Right.Value, updateTick);
-            LeftStickUp.SetValue(LeftStick.Up.Value, updateTick);
-            LeftStickDown.SetValue(LeftStick.Down.Value, updateTick);
+            LeftStickLeft.SetValue(LeftStick.Left.Value);
+            LeftStickRight.SetValue(LeftStick.Right.Value);
+            LeftStickUp.SetValue(LeftStick.Up.Value);
+            LeftStickDown.SetValue(LeftStick.Down.Value);
         }
 
 
-        internal void ProcessRightStick(ulong updateTick, float deltaTime)
+        internal void ProcessRightStick()
         {
             var x = Utility.ValueFromSides(RightStickLeft.NextRawValue, RightStickRight.NextRawValue);
             var y = Utility.ValueFromSides(RightStickDown.NextRawValue, RightStickUp.NextRawValue, InputManager.InvertYAxis);
@@ -312,22 +311,22 @@ namespace Otiose.Input
             }
 
             RightStick.Raw = true;
-            RightStick.UpdateWithAxes(v.X, v.Y, updateTick, deltaTime);
+            RightStick.UpdateWithAxes(v.X, v.Y);
 
             RightStickX.Raw = true;
-            RightStickX.CommitWithValue(v.X, updateTick, deltaTime);
+            RightStickX.CommitWithValue(v.X);
 
             RightStickY.Raw = true;
-            RightStickY.CommitWithValue(v.Y, updateTick, deltaTime);
+            RightStickY.CommitWithValue(v.Y);
 
-            RightStickLeft.SetValue(RightStick.Left.Value, updateTick);
-            RightStickRight.SetValue(RightStick.Right.Value, updateTick);
-            RightStickUp.SetValue(RightStick.Up.Value, updateTick);
-            RightStickDown.SetValue(RightStick.Down.Value, updateTick);
+            RightStickLeft.SetValue(RightStick.Left.Value);
+            RightStickRight.SetValue(RightStick.Right.Value);
+            RightStickUp.SetValue(RightStick.Up.Value);
+            RightStickDown.SetValue(RightStick.Down.Value);
         }
 
 
-        internal void ProcessDPad(ulong updateTick, float deltaTime)
+        internal void ProcessDPad()
         {
             var lowerDeadZone = Utility.Max(DPadLeft.LowerDeadZone, DPadRight.LowerDeadZone, DPadUp.LowerDeadZone, DPadDown.LowerDeadZone);
             var upperDeadZone = Utility.Min(DPadLeft.UpperDeadZone, DPadRight.UpperDeadZone, DPadUp.UpperDeadZone, DPadDown.UpperDeadZone);
@@ -337,29 +336,29 @@ namespace Otiose.Input
             var v = Utility.ApplyCircularDeadZone(x, y, lowerDeadZone, upperDeadZone);
 
             DPad.Raw = true;
-            DPad.UpdateWithAxes(v.X, v.Y, updateTick, deltaTime);
+            DPad.UpdateWithAxes(v.X, v.Y);
 
             DPadX.Raw = true;
-            DPadX.CommitWithValue(v.X, updateTick, deltaTime);
+            DPadX.CommitWithValue(v.X);
 
             DPadY.Raw = true;
-            DPadY.CommitWithValue(v.Y, updateTick, deltaTime);
+            DPadY.CommitWithValue(v.Y);
 
-            DPadLeft.SetValue(DPad.Left.Value, updateTick);
-            DPadRight.SetValue(DPad.Right.Value, updateTick);
-            DPadUp.SetValue(DPad.Up.Value, updateTick);
-            DPadDown.SetValue(DPad.Down.Value, updateTick);
+            DPadLeft.SetValue(DPad.Left.Value);
+            DPadRight.SetValue(DPad.Right.Value);
+            DPadUp.SetValue(DPad.Up.Value);
+            DPadDown.SetValue(DPad.Down.Value);
         }
 
 
-        public void Commit(ulong updateTick, float deltaTime)
+        public void Commit()
         {
             // We need to do some processing to ensure all the various objects
             // holding directional values are calculated optimally with circular 
             // deadzones and then set properly everywhere.
-            ProcessLeftStick(updateTick, deltaTime);
-            ProcessRightStick(updateTick, deltaTime);
-            ProcessDPad(updateTick, deltaTime);
+            ProcessLeftStick();
+            ProcessRightStick();
+            ProcessDPad();
 
             // Next, commit all control values.
             int controlCount = Controls.Length;
@@ -372,7 +371,7 @@ namespace Otiose.Input
 
                     if (control.HasChanged)
                     {
-                        LastChangeTick = updateTick;
+                        LastChangeTick = Time.frameCount;
                     }
                 }
             }
@@ -380,7 +379,7 @@ namespace Otiose.Input
             // Calculate the "Command" control for known controllers and commit it.
             if (IsKnown)
             {
-                Command.CommitWithState(AnyCommandControlIsPressed(), updateTick, deltaTime);
+                Command.CommitWithState(AnyCommandControlIsPressed());
             }
         }
 
@@ -393,7 +392,7 @@ namespace Otiose.Input
 
         internal void RequestActivation()
         {
-            LastChangeTick = InputManager.CurrentTick;
+            LastChangeTick = Time.frameCount;
         }
 
 
@@ -414,31 +413,16 @@ namespace Otiose.Input
         }
 
 
-        public virtual bool IsSupportedOnThisPlatform
-        {
-            get { return true; }
-        }
+        public virtual bool IsSupportedOnThisPlatform => true;
 
 
-        public virtual bool IsKnown
-        {
-            get { return true; }
-        }
+        public virtual bool IsKnown => true;
 
 
-        public bool IsUnknown
-        {
-            get { return !IsKnown; }
-        }
+        public bool IsUnknown => !IsKnown;
 
 
-        public bool MenuWasPressed
-        {
-            get
-            {
-                return GetControl(InputControlType.Command).WasPressed;
-            }
-        }
+        public bool MenuWasPressed => GetControl(InputControlType.Command).WasPressed;
 
 
         public InputControl AnyButton
@@ -459,43 +443,37 @@ namespace Otiose.Input
             }
         }
 
-        public InputControl LeftStickUp { get { return GetControl(InputControlType.LeftStickUp); } }
-        public InputControl LeftStickDown { get { return GetControl(InputControlType.LeftStickDown); } }
-        public InputControl LeftStickLeft { get { return GetControl(InputControlType.LeftStickLeft); } }
-        public InputControl LeftStickRight { get { return GetControl(InputControlType.LeftStickRight); } }
+        public InputControl LeftStickUp => GetControl(InputControlType.LeftStickUp);
+        public InputControl LeftStickDown => GetControl(InputControlType.LeftStickDown);
+        public InputControl LeftStickLeft => GetControl(InputControlType.LeftStickLeft);
+        public InputControl LeftStickRight => GetControl(InputControlType.LeftStickRight);
 
-        public InputControl RightStickUp { get { return GetControl(InputControlType.RightStickUp); } }
-        public InputControl RightStickDown { get { return GetControl(InputControlType.RightStickDown); } }
-        public InputControl RightStickLeft { get { return GetControl(InputControlType.RightStickLeft); } }
-        public InputControl RightStickRight { get { return GetControl(InputControlType.RightStickRight); } }
+        public InputControl RightStickUp => GetControl(InputControlType.RightStickUp);
+        public InputControl RightStickDown => GetControl(InputControlType.RightStickDown);
+        public InputControl RightStickLeft => GetControl(InputControlType.RightStickLeft);
+        public InputControl RightStickRight => GetControl(InputControlType.RightStickRight);
 
-        public InputControl DPadUp { get { return GetControl(InputControlType.DPadUp); } }
-        public InputControl DPadDown { get { return GetControl(InputControlType.DPadDown); } }
-        public InputControl DPadLeft { get { return GetControl(InputControlType.DPadLeft); } }
-        public InputControl DPadRight { get { return GetControl(InputControlType.DPadRight); } }
+        public InputControl DPadUp => GetControl(InputControlType.DPadUp);
+        public InputControl DPadDown => GetControl(InputControlType.DPadDown);
+        public InputControl DPadLeft => GetControl(InputControlType.DPadLeft);
+        public InputControl DPadRight => GetControl(InputControlType.DPadRight);
 
-        public InputControl Action1 { get { return GetControl(InputControlType.Action1); } }
-        public InputControl Action2 { get { return GetControl(InputControlType.Action2); } }
-        public InputControl Action3 { get { return GetControl(InputControlType.Action3); } }
-        public InputControl Action4 { get { return GetControl(InputControlType.Action4); } }
+        public InputControl Action1 => GetControl(InputControlType.Action1);
+        public InputControl Action2 => GetControl(InputControlType.Action2);
+        public InputControl Action3 => GetControl(InputControlType.Action3);
+        public InputControl Action4 => GetControl(InputControlType.Action4);
 
-        public InputControl LeftTrigger { get { return GetControl(InputControlType.LeftTrigger); } }
-        public InputControl RightTrigger { get { return GetControl(InputControlType.RightTrigger); } }
+        public InputControl LeftTrigger => GetControl(InputControlType.LeftTrigger);
+        public InputControl RightTrigger => GetControl(InputControlType.RightTrigger);
 
-        public InputControl LeftBumper { get { return GetControl(InputControlType.LeftBumper); } }
-        public InputControl RightBumper { get { return GetControl(InputControlType.RightBumper); } }
+        public InputControl LeftBumper => GetControl(InputControlType.LeftBumper);
+        public InputControl RightBumper => GetControl(InputControlType.RightBumper);
 
-        public InputControl LeftStickButton { get { return GetControl(InputControlType.LeftStickButton); } }
-        public InputControl RightStickButton { get { return GetControl(InputControlType.RightStickButton); } }
+        public InputControl LeftStickButton => GetControl(InputControlType.LeftStickButton);
+        public InputControl RightStickButton => GetControl(InputControlType.RightStickButton);
 
 
-        public TwoAxisInputControl Direction
-        {
-            get
-            {
-                return DPad.UpdateTick > LeftStick.UpdateTick ? DPad : LeftStick;
-            }
-        }
+        public TwoAxisInputControl Direction => DPad.UpdateTick > LeftStick.UpdateTick ? DPad : LeftStick;
 
 
         public static implicit operator bool(InputDevice device)
