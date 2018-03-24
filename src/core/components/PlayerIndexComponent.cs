@@ -4,24 +4,14 @@ using Otiose.Input;
 
 namespace Core.components
 {
-///    <summary>Holds the index of the player attached</summary>
+    ///    <summary>Holds the index of the player attached</summary>
     public class PlayerIndexComponent : Component
-{
-    public PlayerIndex PlayerIndex
     {
-        get { return PlayerIndex; }
-        set
+        public PlayerIndex PlayerIndex;
+
+        public PlayerIndexComponent(PlayerIndex playerIndex)
         {
-                        
+            PlayerIndex = playerIndex;
         }
-    }
-
-    public PlayerActionSet PlayerActionSet; 
-
-    public PlayerIndexComponent(PlayerIndex playerIndex)
-    {
-        PlayerIndex = playerIndex;
-    }
-        
     }
 }

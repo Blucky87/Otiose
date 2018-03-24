@@ -55,7 +55,7 @@ namespace Otiose.Input
         {
             Actions = new ReadOnlyCollection<PlayerAction>(actions);
             Enabled = true;
-            InputManager.AttachPlayerActionSet(this);
+//            InputManager.AttachPlayerActionSet(this);
         }
 
 
@@ -65,7 +65,7 @@ namespace Otiose.Input
         /// </summary>
         public void Destroy()
         {
-            InputManager.DetachPlayerActionSet(this);
+//            InputManager.DetachPlayerActionSet(this);
         }
 
 
@@ -130,7 +130,7 @@ namespace Otiose.Input
         }
 
 
-        internal void Update(ulong updateTick, float deltaTime)
+        internal void Update()
         {
             var device = Device ?? InputManager.ActiveDevice;
 
@@ -139,7 +139,7 @@ namespace Otiose.Input
             {
                 var action = actions[i];
 
-                action.Update(updateTick, deltaTime, device);
+                action.Update(device);
 
                 if (action.UpdateTick > UpdateTick)
                 {
@@ -151,13 +151,13 @@ namespace Otiose.Input
             var oneAxisActionsCount = oneAxisActions.Count;
             for (int i = 0; i < oneAxisActionsCount; i++)
             {
-                oneAxisActions[i].Update(updateTick, deltaTime);
+                oneAxisActions[i].Update();
             }
 
             var twoAxisActionsCount = twoAxisActions.Count;
             for (int i = 0; i < twoAxisActionsCount; i++)
             {
-                twoAxisActions[i].Update(updateTick, deltaTime);
+                twoAxisActions[i].Update();
             }
         }
 

@@ -60,7 +60,7 @@ namespace Otiose.Input
         }
 
 
-        public override void Update(ulong updateTick, float deltaTime)
+        public override void Update()
         {
             if (Profile == null)
             {
@@ -87,7 +87,7 @@ namespace Otiose.Input
                 var buttonMapping = Profile.ButtonMappings[i];
                 var buttonState = buttonMapping.Source.GetState(this);
 
-                UpdateWithState(buttonMapping.Target, buttonState, updateTick, deltaTime);
+                UpdateWithState(buttonMapping.Target, buttonState);
             }
         }
 

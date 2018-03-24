@@ -15,10 +15,10 @@
         }
 
 
-        internal void Update(ulong updateTick, float deltaTime)
+        internal void Update()
         {
             var value = Utility.ValueFromSides(negativeAction, positiveAction);
-            CommitWithValue(value, updateTick, deltaTime);
+            CommitWithValue(value);
         }
     }
 }

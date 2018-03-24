@@ -15,6 +15,7 @@ namespace Otiose
     {
         protected override void Initialize()
         {
+            //set up input managers
             SetupInput();
 
             
@@ -22,9 +23,6 @@ namespace Otiose
             
             Window.AllowUserResizing = true;
             
-            
-
-
             
             // create our Scene with the DefaultRenderer and a clear color of CornflowerBlue
             var myScene = Scene.createWithDefaultRenderer();
@@ -43,34 +41,7 @@ namespace Otiose
 
 
         protected override void Update(GameTime gametime) {
-            InputManager.Update();
-
-//          if (Nez.Input.leftMouseButtonDown)
-//          {
-//            Debug.log(Nez.Input.scaledMousePosition);
-//          }
-
-/*            if(Input.isKeyDown(Keys.A)) {
-                var img2 = otherScene.contentManager.Load<Texture2D>("DownBreathing");
-                var entity2 = otherScene.createEntity("first-sprite");
-
-
-                entity2.transform.position = new Vector2(100, 100);
-                var subtextures2 = Subtexture.subtexturesFromAtlas(img2, 64, 64);
-                var spriteAnimation2 = new SpriteAnimation(subtextures2)
-                {
-                    loop = true,
-                    fps = 10
-                };
-
-                Sprite<int> sprite2 = new Sprite<int>(0, spriteAnimation2);
-                sprite2.renderLayer = -1;
-                sprite2.addAnimation(0, spriteAnimation2);
-                entity2.addComponent(sprite2);
-                entity2.getComponent<Sprite<int>>().play(0);
-                Core.scene = otherScene;
-            }
-*/
+           
             base.Update(gametime);
         }
 
@@ -79,13 +50,12 @@ namespace Otiose
 
         void SetupInput()
         {
-            var maxGamePadInputs = 4;
-            var inputManager = new InputManager();
-            var gamePadInputDeviceManager = new GamePadInputDeviceManager(maxGamePadInputs);
+            InputManager inputManager = new InputManager();
+            inputManager.Setup();
+
+            var gamePadInputDeviceManager = new GamePadInputDeviceManager();
             
-            InputManager.Setup();
             InputManager.AddDeviceManager(gamePadInputDeviceManager);
-            
             
             registerGlobalManager(inputManager);
         }

@@ -15,7 +15,7 @@ namespace Otiose
         static void Main()
         {
 
-            int secondsToSleep = 4;
+            int secondsToSleep = 0;
 
             while (secondsToSleep > 0)
             {
@@ -25,10 +25,6 @@ namespace Otiose
                 secondsToSleep--;
             }
 
-            for (; secondsToSleep > 0; secondsToSleep--)
-            {
-                
-            }
             using (var game = new GameCore())
                 game.Run();
         }

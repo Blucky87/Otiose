@@ -21,13 +21,13 @@ namespace Otiose.Input.Setup
 
         public PlayerInputManager(PlayerIndex playerIndex)
         {
-            InputDevice inputDevice = InputManager.Devices[(int) playerIndex]; 
-            playerManager = null; 
-            playerCommandList = new List<CommandInvoker>();
-            CharacterActions = new InputActionSet(inputDevice);
-            controllerProfileStack = new Stack<ControllerProfile>();
-            EnterControlProfile(ControlProfile.Roam);
-            BindControls();
+//            //InputDevice inputDevice = InputManager.Devices[(int) playerIndex]; 
+//            playerManager = null; 
+//            playerCommandList = new List<CommandInvoker>();
+//            CharacterActions = new InputActionSet(inputDevice);
+//            controllerProfileStack = new Stack<ControllerProfile>();
+//            EnterControlProfile(ControlProfile.Roam);
+//            BindControls();
         }
 
         public Stack<ControllerProfile> controllerProfileStack;
@@ -219,7 +219,7 @@ namespace Otiose.Input.Setup
 
         public void update()
         {
-            CheckInput();
+//            CheckInput();
 //            CharacterActions.Update(Game1.ticks, Game1.delta);
         }
 

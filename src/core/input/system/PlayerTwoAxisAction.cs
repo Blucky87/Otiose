@@ -27,11 +27,11 @@
         }
 
 
-        internal void Update(ulong updateTick, float deltaTime)
+        internal void Update()
         {
             var x = Utility.ValueFromSides(negativeXAction, positiveXAction, false);
             var y = Utility.ValueFromSides(negativeYAction, positiveYAction, InputManager.InvertYAxis || InvertYAxis);
-            UpdateWithAxes(x, y, updateTick, deltaTime);
+            UpdateWithAxes(x, y);
         }
     }
 }

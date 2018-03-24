@@ -513,15 +513,15 @@ namespace Otiose.Input
         }
 
         //todo luckenbill
-        internal void Update(ulong updateTick, float deltaTime, InputDevice device)
+        internal void Update(InputDevice device)
         {
             Device = device;
-            UpdateBindings(updateTick, deltaTime);
+            UpdateBindings();
             DetectBindings();
         }
 
 
-        void UpdateBindings(ulong updateTick, float deltaTime)
+        void UpdateBindings()
         {
             var bindingCount = regularBindings.Count;
             for (int i = bindingCount - 1; i >= 0; i--)
@@ -536,7 +536,7 @@ namespace Otiose.Input
                 else
                 {
                     var value = binding.GetValue(Device);
-                    if (UpdateWithValue(value, updateTick, deltaTime))
+                    if (UpdateWithValue(value))
                     {
                         LastInputType = binding.BindingSourceType;
                     }
@@ -660,7 +660,7 @@ namespace Otiose.Input
         }
 
 
-        InputDevice device;
+        private InputDevice device;
         internal InputDevice Device
         {
             get

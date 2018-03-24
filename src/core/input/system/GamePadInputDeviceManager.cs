@@ -23,7 +23,9 @@ namespace Otiose.Input
 
         public GamePadInputDeviceManager()
         {
-            
+            gamePadState = new RingBuffer<GamePadState>[maxDevices];
+            deviceConnected = new bool[maxDevices];
+
             if (InputManager.XInputUpdateRate == 0)
             {
                 timeStep = Mathf.floorToInt(Time.deltaTime * 1000.0f);

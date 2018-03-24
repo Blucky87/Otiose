@@ -1,4 +1,6 @@
-﻿using Nez;
+﻿using Microsoft.Xna.Framework;
+using Nez;
+using Otiose;
 using Otiose.Input;
 
 namespace Core.components
@@ -12,10 +14,8 @@ namespace Core.components
 
         public override void process(Entity entity)
         {
-            if (entity.getComponents<PlayerIndexComponent>().Count > 1)
-            {
-                
-            }
+            PlayerIndex playerIndex = entity.getComponent<PlayerIndexComponent>().PlayerIndex;
+            InputDevice inputDevice = InputManager.Devices 
         }
     }
 }
