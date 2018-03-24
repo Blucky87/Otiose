@@ -15,7 +15,7 @@ namespace Core.components
         public override void process(Entity entity)
         {
             PlayerIndex playerIndex = entity.getComponent<PlayerIndexComponent>().PlayerIndex;
-            InputDevice inputDevice = InputManager.Devices 
+//            InputDevice inputDevice = InputManager.Devices 
         }
     }
 }
