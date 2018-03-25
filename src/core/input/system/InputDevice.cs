@@ -34,13 +34,15 @@ namespace Otiose.Input
 
         internal bool RawSticks { get; set; }
 
+        public readonly Guid Guid;
+
 
         public InputDevice(string name)
         {
-            Console.WriteLine(name);
             Name = name;
             Meta = "";
-
+            Guid = new Guid();
+            
             LastChangeTick = 0;
 
             const int numInputControlTypes = (int)InputControlType.Count + 1;
@@ -59,7 +61,7 @@ namespace Otiose.Input
             DPad = new TwoAxisInputControl();
 
             Command = AddControl(InputControlType.Command, "Command");
-            AddControl(InputControlType.Action1, "Action1");
+//            AddControl(InputControlType.Action1, "Action1");
         }
 
 

@@ -1,14 +1,11 @@
-﻿namespace Otiose.Input.Setup {
-    public class LeftBumperIsPressed : Command {
+﻿using Core.input.setup;
 
-        public LeftBumperIsPressed(ControllerProfile Profile) {
-            controllerProfile = Profile;
-
+namespace Otiose.Input.Setup {
+    public class LeftBumperIsPressed : ControllerCommand
+    {
+        public LeftBumperIsPressed(ControllerProfile controllerProfile) : base(controllerProfile){
         }
 
-        public override void Execute() {
-            controllerProfile.LeftBumper.IsPressed();
-        }
-
+        public override void Execute() => ControllerProfile.LeftBumper.IsPressed();
     }
 }

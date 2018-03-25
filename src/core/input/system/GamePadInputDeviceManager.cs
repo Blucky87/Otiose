@@ -94,9 +94,9 @@ namespace Otiose.Input
         }
 
 
-        public override InputDevice GetPlayerInputDevice(PlayerIndex playerIndex)
+        public Guid GetPlayerInputDeviceGuid(PlayerIndex playerIndex)
         {
-            return devices[(int)playerIndex];
+            return devices[(int)playerIndex].Guid;
         }
 
         public override void Update()
@@ -123,6 +123,7 @@ namespace Otiose.Input
                     deviceConnected[device.DeviceIndex] = device.IsConnected;
                 }
                 
+                //hacky way to update the devices
                 devices.FindAll(x => x.IsAttached).ForEach(x => x.Update());
             }
             

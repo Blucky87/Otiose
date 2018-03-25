@@ -1,9 +1,10 @@
-﻿namespace Otiose.Input.Setup
+﻿using Nez;
+
+namespace Otiose.Input.Setup
 {
-    public abstract class ControllerProfile
+    public class ControllerProfile
     {
 
-        protected PlayerManager _playerManager;
         public ControlBehavior Action1;
         public ControlBehavior Action2;
         public ControlBehavior RightBumper;
@@ -11,17 +12,8 @@
         public TwoAxisControlBehavior LeftStick;
         public TwoAxisControlBehavior RightStick;
 
-        protected ControllerProfile(PlayerManager PManager)
+        protected ControllerProfile(Entity owner)
         {
-            _playerManager = PManager;
-
-            LeftStick = new BlankControllerActions.Stick(PManager);
-            RightStick = new BlankControllerActions.Stick(PManager);
-
-            Action1 = new BlankControllerActions.Action(PManager);
-            Action2 = new BlankControllerActions.Action(PManager);
-            RightBumper = new BlankControllerActions.Action(PManager);
-            LeftBumper = new BlankControllerActions.Action(PManager);
 
         }
 

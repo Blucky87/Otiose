@@ -512,7 +512,7 @@ namespace Otiose.Input
             }
         }
 
-        //todo luckenbill
+        //todo luckenbill?
         internal void Update(InputDevice device)
         {
             Device = device;

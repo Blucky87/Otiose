@@ -9,7 +9,6 @@ namespace Core.components
 {
     public class PlayerActionSetComponent : Component
     {
-        public PlayerActionSet PlayerActionSet;
-
+        public InputActionSet PlayerActionSet;
     }
 }

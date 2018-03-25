@@ -1,18 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Core.input.setup;
 
 namespace Otiose.Input.Setup {
-    public class RightStickWasReleased : Command {
-        //test
-        private Vector2 _axis;
-
-        public RightStickWasReleased(ControllerProfile Profile, Vector2 Axis) {
-            controllerProfile = Profile;
-            _axis = Axis;
+    public class RightStickWasReleased : ControllerCommand {
+        public RightStickWasReleased(ControllerProfile controllerProfile) : base(controllerProfile){
         }
-
-        public override void Execute() {
-            controllerProfile.RightStick.WasReleased(_axis);
-        }
-
+        public override void Execute() => ControllerProfile.RightStick.WasReleased();
     }
 }

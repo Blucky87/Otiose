@@ -1,6 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Nez;
-using Otiose.Input;
+using Otiose;
 
 namespace Core.components
 {
@@ -8,10 +9,12 @@ namespace Core.components
     public class PlayerIndexComponent : Component
     {
         public PlayerIndex PlayerIndex;
+        public Guid InputDeviceGuid;
 
         public PlayerIndexComponent(PlayerIndex playerIndex)
         {
             PlayerIndex = playerIndex;
+            InputDeviceGuid = InputManager.GetPlayerDeviceGuid(playerIndex);
         }
     }
 }

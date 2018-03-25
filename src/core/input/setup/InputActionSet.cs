@@ -27,9 +27,8 @@ namespace Otiose.Input.Setup
         public PlayerAction RightBumper;
         public PlayerAction LeftBumper;
 
-        public InputActionSet(InputDevice theDevice)
+        public InputActionSet()
         {
-            Device = theDevice;
             LSUp = CreatePlayerAction("Left Stick Up");
             LSDown = CreatePlayerAction("Left Stick Down");
             LSLeft = CreatePlayerAction("Left Stick Left");
@@ -47,9 +46,7 @@ namespace Otiose.Input.Setup
             PlayerAction3 = CreatePlayerAction("Player Action 3");
             PlayerAction4 = CreatePlayerAction("Player Action 4");
             RightBumper = CreatePlayerAction("Right Bumper");
-            LeftBumper = CreatePlayerAction("Left Bumper");
-
-            
+            LeftBumper = CreatePlayerAction("Left Bumper");          
 
         }
         

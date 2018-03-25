@@ -1,19 +1,12 @@
 ﻿
-
-
-
+using Core.input.setup;
 namespace Otiose.Input.Setup {
 
-    public class Action2WasPressed : Command {
+    public class Action2WasPressed : ControllerCommand
+    {
+        public Action2WasPressed(ControllerProfile controllerProfile) : base(controllerProfile) { }
 
-        public Action2WasPressed(ControllerProfile Profile) {
-            controllerProfile = Profile;
-        }
-
-        public override void Execute() {
-            controllerProfile.Action2.WasPressed();
-        }
-
+        public override void Execute() => ControllerProfile.Action2.WasPressed();
     }
 }
 

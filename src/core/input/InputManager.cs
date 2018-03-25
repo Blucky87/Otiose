@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
+using Microsoft.VisualBasic.CompilerServices;
+using Microsoft.Xna.Framework;
 using Nez;
 using Nez.Console;
 using Otiose.Input;
@@ -261,7 +264,7 @@ namespace Otiose
         /// Get a device manager from the input manager by type if it one is present.
         /// </summary>
         /// <typeparam name="T">A subclass of InputDeviceManager.</typeparam>
-        public T GetDeviceManager<T>() where T : InputDeviceManager
+        internal static T GetDeviceManager<T>() where T : InputDeviceManager
         {
             InputDeviceManager deviceManager;
             if (deviceManagerTable.TryGetValue(typeof(T), out deviceManager))
@@ -390,6 +393,35 @@ namespace Otiose
             {
                 OnDeviceDetached(inputDevice);
             }
+        }
+
+        public static Guid GetPlayerDeviceGuid(PlayerIndex playerIndex)
+        {
+            Guid deviceGuid = Guid.Empty;
+
+            GamePadInputDeviceManager deviceManager = GetDeviceManager<GamePadInputDeviceManager>();
+            
+            if (deviceManager != null)
+            {
+                deviceGuid = deviceManager.GetPlayerInputDeviceGuid(playerIndex);
+            }
+
+            return deviceGuid;
+        }    
+
+    
+
+        public static InputDevice GetInputDevice(Guid guid)
+        {
+            foreach (InputDevice device in devices)
+            {
+                if (device.Guid == guid)
+                {
+                    return device;
+                }
+            }
+            
+            return InputDevice.Null;
         }
 
 

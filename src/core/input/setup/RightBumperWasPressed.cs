@@ -1,15 +1,9 @@
-﻿namespace Otiose.Input.Setup {
+﻿using Core.input.setup;
 
-    public class RightBumperWasPressed : Command {
-
-        public RightBumperWasPressed(ControllerProfile Profile) {
-            controllerProfile = Profile;
-
+namespace Otiose.Input.Setup {
+    public class RightBumperWasPressed : ControllerCommand {
+        public RightBumperWasPressed(ControllerProfile controllerProfile) : base(controllerProfile) {
         }
-
-        public override void Execute() {
-            controllerProfile.RightBumper.WasPressed();
-        }
-
+        public override void Execute() => ControllerProfile.RightBumper.WasPressed();
     }
 }

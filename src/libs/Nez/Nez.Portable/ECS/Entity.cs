@@ -427,6 +427,13 @@ namespace Nez
 			return component;
 		}
 
+		public Entity buildWithComponent<T>( T component ) where T : Component
+		{
+			component.entity = this;
+			components.add( component );
+			component.initialize();
+			return this;
+		}
 
 		/// <summary>
 		/// Adds a Component to the components list. Returns the Component.

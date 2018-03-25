@@ -10,8 +10,6 @@ namespace Otiose.Input
     {
         protected List<InputDevice> devices = new List<InputDevice>();
 
-        public abstract InputDevice GetPlayerInputDevice(PlayerIndex playerIndex);
-
         public abstract void Update();
 
         public void Commit()

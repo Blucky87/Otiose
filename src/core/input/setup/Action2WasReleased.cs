@@ -1,15 +1,10 @@
-﻿
-
+﻿using Core.input.setup;
 namespace Otiose.Input.Setup {
-    public class Action2WasReleased : Command {
-
-        public Action2WasReleased(ControllerProfile Profile) {
-            controllerProfile = Profile;
+    public class Action2WasReleased : ControllerCommand
+    {
+        public Action2WasReleased(ControllerProfile controllerProfile) : base(controllerProfile) {
         }
 
-        public override void Execute() {
-            controllerProfile.Action2.WasReleased();
-        }
-
+        public override void Execute() => ControllerProfile.Action2.WasReleased();
     }
 }
