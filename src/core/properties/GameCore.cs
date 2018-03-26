@@ -35,10 +35,12 @@ namespace Otiose
             
             //Create controller profile component to hold behavior of actions
             ControllerProfileComponent controlProfileComponent = new ControllerProfileComponent();
+            
+            MovementComponent movementComponent = new MovementComponent();
 
             //create service to 
             Matcher matcher = new Matcher().all( typeof( PlayerActionSetComponent ), typeof( ControllerProfileComponent ) );
-            ActionProfileRoutingSystem actionProfileRoutingSystem = new ActionProfileRoutingSystem(matcher);
+            PlayerActionSetToControllerProfileSystem playerActionSetToControllerProfileSystem = new PlayerActionSetToControllerProfileSystem(matcher);
 
 
             matcher = new Matcher().all(typeof(PlayerActionSetComponent));
@@ -53,9 +55,10 @@ namespace Otiose
             entity.addComponent(playerIndexComponent);
             entity.addComponent(actionSetComponent);
             entity.addComponent(controlProfileComponent);
+            entity.addComponent(movementComponent);
 
             myScene.addEntityProcessor(playerDeviceToActionSet);
-            myScene.addEntityProcessor(actionProfileRoutingSystem);
+            myScene.addEntityProcessor(playerActionSetToControllerProfileSystem);
             myScene.addEntityProcessor(playerActionUpdateSystem);
            
             entity.getComponent<ControllerProfileComponent>().ControllerProfile = new RoamProfile(entity);
@@ -93,6 +96,5 @@ namespace Otiose
             
             registerGlobalManager(inputManager);
         }
-
     }
 }

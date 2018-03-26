@@ -50,7 +50,6 @@ namespace Otiose.Input
 
         readonly static BindingSourceListener[] bindingSourceListeners = {
             new DeviceBindingSourceListener(),
-            new UnknownDeviceBindingSourceListener(),
             new KeyBindingSourceListener(),
             new MouseBindingSourceListener()
         };
@@ -709,10 +708,6 @@ namespace Otiose.Input
 
                     case BindingSourceType.MouseBindingSource:
                         bindingSource = new MouseBindingSource();
-                        break;
-
-                    case BindingSourceType.UnknownDeviceBindingSource:
-                        bindingSource = new UnknownDeviceBindingSource();
                         break;
 
                     default:

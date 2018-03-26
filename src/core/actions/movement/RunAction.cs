@@ -15,17 +15,17 @@ namespace Otiose.Input.Setup.Actions
         
         public override void IsPressed()
         {
-            
+            MovementManager.Run(_entity);
         }
 
         public override void WasReleased()
         {
-            Console.WriteLine($"{_entity.getComponent<PlayerIndexComponent>().PlayerIndex.ToString()} Just Released Running");
+            MovementManager.EndRun(_entity);
         }
 
         public override void WasPressed()
         {
-            Console.WriteLine($"{_entity.getComponent<PlayerIndexComponent>().PlayerIndex.ToString()} Just Pressed Running");   
+            MovementManager.BeginRun(_entity);
         }
     }
 }

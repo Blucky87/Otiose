@@ -43,8 +43,8 @@ namespace Otiose.Input.Setup
             RightStickLeft = new EmptyAction();
             RightStickDown = new EmptyAction();
             
-            LeftStick = new EmptyAction();
-            RightStick = new EmptyAction();
+//            LeftStick = new EmptyAction();
+//            RightStick = new EmptyAction();
 
         }
 
