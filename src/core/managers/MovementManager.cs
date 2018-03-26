@@ -2,8 +2,9 @@
 using Core.components;
 using Microsoft.Xna.Framework;
 using Nez;
+using Otiose.Input.Setup;
 
-namespace Otiose.Input.Setup.Actions
+namespace Core.managers
 {
     public class MovementManager
     {

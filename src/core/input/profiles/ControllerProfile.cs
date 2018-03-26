@@ -1,50 +1,49 @@
-﻿using Nez;
-using Otiose.Input.Setup.Actions;
+﻿using Core.actions;
 
 namespace Otiose.Input.Setup
 {
     public class ControllerProfile
     {
-        public ControlBehavior Action1;
-        public ControlBehavior Action2;
-        public ControlBehavior Action3;
-        public ControlBehavior Action4;
-        public ControlBehavior LeftStickUp;
-        public ControlBehavior LeftStickDown;
-        public ControlBehavior LeftStickLeft;
-        public ControlBehavior LeftStickRight;
-        public ControlBehavior RightStickUp;
-        public ControlBehavior RightStickDown;
-        public ControlBehavior RightStickLeft;
-        public ControlBehavior RightStickRight;
-        public ControlBehavior RightBumper;
-        public ControlBehavior LeftBumper;
+        public IControlAction Action1;
+        public IControlAction Action2;
+        public IControlAction Action3;
+        public IControlAction Action4;
+        public IControlAction LeftStickUp;
+        public IControlAction LeftStickDown;
+        public IControlAction LeftStickLeft;
+        public IControlAction LeftStickRight;
+        public IControlAction RightStickUp;
+        public IControlAction RightStickDown;
+        public IControlAction RightStickLeft;
+        public IControlAction RightStickRight;
+        public IControlAction RightBumper;
+        public IControlAction LeftBumper;
         
-        public ControlBehavior LeftStick;
-        public ControlBehavior RightStick;
+        public IControlAction LeftStick;
+        public IControlAction RightStick;
 
         public ControllerProfile()
         {
-            Action1 = new EmptyAction();
-            Action2 = new EmptyAction();
-            Action3 = new EmptyAction();
-            Action4 = new EmptyAction();
+            Action1 = new EmptyControlAction();
+            Action2 = new EmptyControlAction();
+            Action3 = new EmptyControlAction();
+            Action4 = new EmptyControlAction();
             
-            LeftStickUp = new EmptyAction();
-            LeftStickDown = new EmptyAction();
-            LeftStickLeft = new EmptyAction();
-            LeftStickRight = new EmptyAction();
+            LeftStickUp = new EmptyControlAction();
+            LeftStickDown = new EmptyControlAction();
+            LeftStickLeft = new EmptyControlAction();
+            LeftStickRight = new EmptyControlAction();
             
-            RightBumper = new EmptyAction();
-            LeftBumper = new EmptyAction();
+            RightBumper = new EmptyControlAction();
+            LeftBumper = new EmptyControlAction();
             
-            RightStickUp = new EmptyAction();
-            RightStickDown = new EmptyAction();
-            RightStickLeft = new EmptyAction();
-            RightStickDown = new EmptyAction();
+            RightStickUp = new EmptyControlAction();
+            RightStickDown = new EmptyControlAction();
+            RightStickLeft = new EmptyControlAction();
+            RightStickDown = new EmptyControlAction();
             
-//            LeftStick = new EmptyAction();
-//            RightStick = new EmptyAction();
+            LeftStick = new EmptyControlAction();
+            RightStick = new EmptyControlAction();
 
         }
 

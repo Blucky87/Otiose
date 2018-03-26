@@ -1,4 +1,5 @@
-﻿using Nez;
+﻿using Core.actions.movement;
+using Nez;
 
 namespace Otiose.Input.Setup.Actions
 {
@@ -9,12 +10,12 @@ namespace Otiose.Input.Setup.Actions
 //            LeftStick = new RunAction(owner);
 //            RightStick = new RunAction(owner);
 
-            Action1 = new RunAction(owner);
-            LeftStick = new MovementAction(owner);
-            LeftStickUp = new UpMovementAction(owner);
-            LeftStickDown = new DownMovementAction(owner);
-            LeftStickLeft = new LeftMovementAction(owner);
-            LeftStickRight = new RightMovementAction(owner);
+            Action1 = new RunControlAction(owner);
+            LeftStick = new MovementControlAction(owner);
+            LeftStickUp = new UpMovementControlAction(owner);
+            LeftStickDown = new DownMovementControlAction(owner);
+            LeftStickLeft = new LeftMovementControlAction(owner);
+            LeftStickRight = new RightMovementControlAction(owner);
             
         }
     }
