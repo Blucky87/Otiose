@@ -41,7 +41,7 @@ namespace Otiose.Input
         {
             Name = name;
             Meta = "";
-            Guid = new Guid();
+            Guid = Guid.NewGuid();
             
             LastChangeTick = 0;
 

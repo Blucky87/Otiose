@@ -13,7 +13,6 @@ namespace Otiose.Input.Setup.Actions
             _entity = entity;
         }
         
-        
         public override void IsPressed()
         {
             
@@ -21,7 +20,7 @@ namespace Otiose.Input.Setup.Actions
 
         public override void WasReleased()
         {
-            Console.WriteLine($"{_entity.getComponent<PlayerIndexComponent>().PlayerIndex.ToString()}Just Released Running");
+            Console.WriteLine($"{_entity.getComponent<PlayerIndexComponent>().PlayerIndex.ToString()} Just Released Running");
         }
 
         public override void WasPressed()

@@ -15,7 +15,7 @@ namespace Otiose.Input
 	/// of "Left", "Right", "Up" and "Down" filtered into a single two-axis control with its own applied circular deadzone, 
 	/// queryable vector value, etc.
 	/// </summary>
-	public abstract class PlayerActionSet
+	public abstract class ActionSet
     {
         /// <summary>
         /// The device which this set should query from, if applicable. 
@@ -51,7 +51,7 @@ namespace Otiose.Input
         internal PlayerAction listenWithAction;
 
 
-        protected PlayerActionSet()
+        protected ActionSet()
         {
             Actions = new ReadOnlyCollection<PlayerAction>(actions);
             Enabled = true;

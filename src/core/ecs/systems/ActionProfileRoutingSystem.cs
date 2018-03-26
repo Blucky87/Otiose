@@ -13,37 +13,28 @@ namespace Core.components
 
         public override void process(Entity entity)
         {
-            InputActionSet actionSet = entity.getComponent<PlayerActionSetComponent>().PlayerActionSet;
+            PlayerActionSet actionSet = entity.getComponent<PlayerActionSetComponent>().PlayerActionSet;
             ControllerProfile controllerProfile =
-                entity.getComponent<PlayerControllerProfileComponent>().ControllerProfile;
+                entity.getComponent<ControllerProfileComponent>().ControllerProfile;
             
             
             Detect(actionSet, controllerProfile);
-            
-          
         }
 
-        private void Detect(InputActionSet CharacterActions, ControllerProfile  controllerProfile)
+        private void Detect(PlayerActionSet ActionSet, ControllerProfile  controllerProfile)
         {
-            
-            //////////////////////////////////////////////
-            //               Action 1  (Attack)         //
-            //////////////////////////////////////////////
-            
-            if(CharacterActions.PlayerAction1.WasPressed)
+            if(ActionSet.Action1.WasPressed)
             {
-               GameSystem.AddCommand(new Action1WasPressed(controllerProfile));
+               GameCommandManager.AddCommand(new Action1WasPressed(controllerProfile));
             }
-            if (CharacterActions.PlayerAction1.WasReleased)
+            if (ActionSet.Action1.WasReleased)
             {
-                GameSystem.AddCommand(new Action1WasReleased(controllerProfile));
+                GameCommandManager.AddCommand(new Action1WasReleased(controllerProfile));
             }
-            if (CharacterActions.PlayerAction1.IsPressed)
+            if (ActionSet.Action1.IsPressed)
             {
-                GameSystem.AddCommand(new Action1IsPressed(controllerProfile));
+                GameCommandManager.AddCommand(new Action1IsPressed(controllerProfile));
             }
-
         }
-        
     }
 }

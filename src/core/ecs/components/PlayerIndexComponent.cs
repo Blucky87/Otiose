@@ -13,6 +13,8 @@ namespace Core.components
 
         public PlayerIndexComponent(PlayerIndex playerIndex)
         {
+            Console.WriteLine($"{playerIndex} Player Index Component Created");
+            
             PlayerIndex = playerIndex;
             InputDeviceGuid = InputManager.GetPlayerDeviceGuid(playerIndex);
         }

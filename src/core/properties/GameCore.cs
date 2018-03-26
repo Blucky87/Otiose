@@ -18,75 +18,78 @@ namespace Otiose
         protected override void Initialize()
         {
             SetupWindow();
-            
-            //set up input managers
+            SetupGameCommandManager();
             SetupInput();
 
            
-            var myScene = Scene.createWithDefaultRenderer();
+            Scene myScene = Scene.createWithDefaultRenderer();
             
-            Entity entity = myScene.createEntity("Hero");
-            entity.addComponent(new PlayerIndexComponent(PlayerIndex.One));
+            //Create component that will represent who owns the entity
+            PlayerIndexComponent playerIndexComponent = new PlayerIndexComponent(PlayerIndex.One);
 
-            var actionSet = new PlayerActionSetComponent();
-            actionSet.PlayerActionSet = new InputActionSet();
-            entity.addComponent(actionSet);
+            //Create Action Set Component to hold link between binding device and binded action
+            PlayerActionSetComponent actionSetComponent = new PlayerActionSetComponent();
+            actionSetComponent.PlayerActionSet = new PlayerActionSet();
+            actionSetComponent.PlayerActionSet.SetupDefaultBindings();
+            actionSetComponent.PlayerActionSet.SetupDefaultKeebBindings();
             
-            var controlProfile = new PlayerControllerProfileComponent();
-            controlProfile.ControllerProfile = new RoamProfile(entity);
-            entity.addComponent(controlProfile);
+            //Create controller profile component to hold behavior of actions
+            ControllerProfileComponent controlProfileComponent = new ControllerProfileComponent();
 
-            var matcher = new Matcher().all( typeof( PlayerActionSetComponent ), typeof( PlayerControllerProfileComponent ) );
-            var actionProfileRoutingSystem = new ActionProfileRoutingSystem(matcher);
+            //create service to 
+            Matcher matcher = new Matcher().all( typeof( PlayerActionSetComponent ), typeof( ControllerProfileComponent ) );
+            ActionProfileRoutingSystem actionProfileRoutingSystem = new ActionProfileRoutingSystem(matcher);
 
 
             matcher = new Matcher().all(typeof(PlayerActionSetComponent));
-            var playerActionUpdateSystem = new PlayerActionUpdateSystem(matcher);
+            PlayerActionUpdateSystem playerActionUpdateSystem = new PlayerActionUpdateSystem(matcher);
 
             matcher = new Matcher().all(typeof(PlayerIndexComponent), typeof(PlayerActionSetComponent));
-            var playerDeviceToActionSet = new PlayerDeviceToActionSetSystem(matcher);
+            PlayerDeviceToActionSetSystem playerDeviceToActionSet = new PlayerDeviceToActionSetSystem(matcher);
 
-
+            
+            Entity entity = myScene.createEntity("Hero");
+            
+            entity.addComponent(playerIndexComponent);
+            entity.addComponent(actionSetComponent);
+            entity.addComponent(controlProfileComponent);
 
             myScene.addEntityProcessor(playerDeviceToActionSet);
             myScene.addEntityProcessor(actionProfileRoutingSystem);
             myScene.addEntityProcessor(playerActionUpdateSystem);
-            
-            
-            
-            //create plaeyraction set & attach it to entity
-            
-
-            
-            
+           
+            entity.getComponent<ControllerProfileComponent>().ControllerProfile = new RoamProfile(entity);
             
             scene = myScene;
             
             base.Initialize();
         }
-
-        private void SetupWindow()
-        {
-             Window.AllowUserResizing = true;
-        }
-
-
+        
         protected override void Update(GameTime gametime) {
            
             base.Update(gametime);
         }
 
-
-
+        
+        private void SetupWindow()
+        {
+            Window.AllowUserResizing = true;
+        }
+        
+        private void SetupGameCommandManager()
+        {
+            GameCommandManager gameCommandManager = new GameCommandManager();
+            
+            registerGlobalManager(gameCommandManager);
+        }
 
         void SetupInput()
         {
             InputManager inputManager = new InputManager();
-            inputManager.Setup();
-
-            var gamePadInputDeviceManager = new GamePadInputDeviceManager();
+            GamePadInputDeviceManager gamePadInputDeviceManager = new GamePadInputDeviceManager();
             
-            InputManager.AddDeviceManager(gamePadInputDeviceManager);
+            inputManager.Setup();
+            inputManager.AddDeviceManager(gamePadInputDeviceManager);
             
             registerGlobalManager(inputManager);
         }

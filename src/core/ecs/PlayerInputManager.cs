@@ -34,7 +34,7 @@ namespace Otiose.Input.Setup
         public ControllerProfile ControllerProfile => controllerProfileStack.Peek();
 
 //        public List<CommandInvoker> playerCommandList;
-        public InputActionSet CharacterActions;
+        public PlayerActionSet CharacterActions;
 
         public override void onAddedToEntity () {
             
@@ -223,26 +223,26 @@ namespace Otiose.Input.Setup
         private void BindControls()
         {
 //            CharacterActions.Device = InputManager.ActiveDevice;
-            CharacterActions.LSLeft.AddDefaultBinding(Keys.Left);
-            CharacterActions.LSLeft.AddDefaultBinding(InputControlType.LeftStickLeft);
-            CharacterActions.LSRight.AddDefaultBinding(Keys.Right);
-            CharacterActions.LSRight.AddDefaultBinding(InputControlType.LeftStickRight);
-            CharacterActions.LSUp.AddDefaultBinding(Keys.Up);
-            CharacterActions.LSUp.AddDefaultBinding(InputControlType.LeftStickUp);
-            CharacterActions.LSDown.AddDefaultBinding(Keys.Down);
-            CharacterActions.LSDown.AddDefaultBinding(InputControlType.LeftStickDown);
-            CharacterActions.RSUp.AddDefaultBinding(Keys.I);
-            CharacterActions.RSUp.AddDefaultBinding(InputControlType.RightStickUp);
-            CharacterActions.RSDown.AddDefaultBinding(Keys.K);
-            CharacterActions.RSDown.AddDefaultBinding(InputControlType.RightStickDown);
-            CharacterActions.RSLeft.AddDefaultBinding(Keys.J);
-            CharacterActions.RSLeft.AddDefaultBinding(InputControlType.RightStickLeft);
-            CharacterActions.RSRight.AddDefaultBinding(Keys.L);
-            CharacterActions.RSRight.AddDefaultBinding(InputControlType.RightStickRight);
-            CharacterActions.PlayerAction1.AddDefaultBinding(Keys.Q);
-            CharacterActions.PlayerAction1.AddDefaultBinding(InputControlType.Action1);
-            CharacterActions.PlayerAction2.AddDefaultBinding(Keys.W);
-            CharacterActions.PlayerAction2.AddDefaultBinding(InputControlType.Action2);
+            CharacterActions.LeftStickLeft.AddDefaultBinding(Keys.Left);
+            CharacterActions.LeftStickLeft.AddDefaultBinding(InputControlType.LeftStickLeft);
+            CharacterActions.LeftStickRight.AddDefaultBinding(Keys.Right);
+            CharacterActions.LeftStickRight.AddDefaultBinding(InputControlType.LeftStickRight);
+            CharacterActions.LeftStickUp.AddDefaultBinding(Keys.Up);
+            CharacterActions.LeftStickUp.AddDefaultBinding(InputControlType.LeftStickUp);
+            CharacterActions.LeftStickDown.AddDefaultBinding(Keys.Down);
+            CharacterActions.LeftStickDown.AddDefaultBinding(InputControlType.LeftStickDown);
+            CharacterActions.RightStickUp.AddDefaultBinding(Keys.I);
+            CharacterActions.RightStickUp.AddDefaultBinding(InputControlType.RightStickUp);
+            CharacterActions.RightStickDown.AddDefaultBinding(Keys.K);
+            CharacterActions.RightStickDown.AddDefaultBinding(InputControlType.RightStickDown);
+            CharacterActions.RightStickLeft.AddDefaultBinding(Keys.J);
+            CharacterActions.RightStickLeft.AddDefaultBinding(InputControlType.RightStickLeft);
+            CharacterActions.RightStickRight.AddDefaultBinding(Keys.L);
+            CharacterActions.RightStickRight.AddDefaultBinding(InputControlType.RightStickRight);
+            CharacterActions.Action1.AddDefaultBinding(Keys.Q);
+            CharacterActions.Action1.AddDefaultBinding(InputControlType.Action1);
+            CharacterActions.Action2.AddDefaultBinding(Keys.W);
+            CharacterActions.Action2.AddDefaultBinding(InputControlType.Action2);
             CharacterActions.RightBumper.AddDefaultBinding(InputControlType.RightBumper);
             CharacterActions.RightBumper.AddDefaultBinding(Keys.E);
             CharacterActions.LeftBumper.AddDefaultBinding(InputControlType.LeftBumper);

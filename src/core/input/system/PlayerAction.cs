@@ -28,11 +28,11 @@ namespace Otiose.Input
         /// <summary>
         /// Gets the owning action set containing this action.
         /// </summary>
-        public PlayerActionSet Owner { get; private set; }
+        public ActionSet Owner { get; private set; }
 
         /// <summary>
         /// Configures how this action listens for new bindings.
-        /// When <c>null</c> (default) the owner's <see cref="PlayerActionSet.ListenOptions"/> will be used.
+        /// When <c>null</c> (default) the owner's <see cref="ActionSet.ListenOptions"/> will be used.
         /// <seealso cref="PlayerAction.ListenForBinding()"/>
         /// </summary>
         public BindingListenOptions ListenOptions = null;
@@ -61,7 +61,7 @@ namespace Otiose.Input
         /// </summary>
         /// <param name="name">A unique identifier for this action within the context of its owning action set.</param>
         /// <param name="owner">The action set to contain (own) this action.</param>
-        public PlayerAction(string name, PlayerActionSet owner)
+        public PlayerAction(string name, ActionSet owner)
         {
             Raw = true;
             Name = name;

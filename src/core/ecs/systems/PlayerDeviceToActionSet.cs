@@ -23,7 +23,13 @@ namespace Core.components
             Guid inputDeviceGuid = entity.getComponent<PlayerIndexComponent>().InputDeviceGuid;
             InputDevice inputDevice = InputManager.GetInputDevice(inputDeviceGuid);
 
-            entity.getComponent<PlayerActionSetComponent>().PlayerActionSet.Device = inputDevice;
+            InputDevice entityInputDevice = entity.getComponent<PlayerActionSetComponent>().PlayerActionSet.Device ?? InputDevice.Null;
+
+            if (inputDevice.Guid != entityInputDevice.Guid)
+            {
+                entity.getComponent<PlayerActionSetComponent>().PlayerActionSet.Device = inputDevice;
+            }
+            
         }
     }
 }

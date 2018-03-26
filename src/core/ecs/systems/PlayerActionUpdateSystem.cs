@@ -11,7 +11,7 @@ namespace Core.components
 
         public override void process(Entity entity)
         {
-            PlayerActionSet actionSet = entity.getComponent<PlayerActionSetComponent>().PlayerActionSet;
+            ActionSet actionSet = entity.getComponent<PlayerActionSetComponent>().PlayerActionSet;
             
             actionSet.Update();
         }

@@ -234,7 +234,7 @@ namespace Otiose
         /// you try to add more than one.
         /// </summary>
         /// <param name="inputDeviceManager">The device manager to add.</param>
-        public static void AddDeviceManager(InputDeviceManager deviceManager)
+        public void AddDeviceManager(InputDeviceManager deviceManager)
         {
             AssertIsSetup();
 
@@ -405,6 +405,8 @@ namespace Otiose
             {
                 deviceGuid = deviceManager.GetPlayerInputDeviceGuid(playerIndex);
             }
+            
+            Console.WriteLine($"{deviceGuid} Device GUID found for Player Index {playerIndex.ToString()}");
 
             return deviceGuid;
         }    

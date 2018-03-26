@@ -4,7 +4,7 @@ namespace Otiose.Input.Setup.Actions
 {
     public class RoamProfile : ControllerProfile
     {
-        public RoamProfile(Entity owner) : base(owner)
+        public RoamProfile(Entity owner) : base()
         {
 //            LeftStick = new RunAction(owner);
 //            RightStick = new RunAction(owner);
