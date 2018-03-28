@@ -11,8 +11,10 @@ namespace Core.components
 
         public override void process(Entity entity)
         {
+            //get the entity's attached action set
             ActionSet actionSet = entity.getComponent<PlayerActionSetComponent>().PlayerActionSet;
             
+            //update all the actions in the action set
             actionSet.Update();
         }
     }
