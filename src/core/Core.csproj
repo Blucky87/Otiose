@@ -13,7 +13,4 @@
   <ItemGroup>
     <Content Include="..\..\resources\content.mgcb" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\libs\Nez\Nez.Portable\Nez.csproj" />
-  </ItemGroup>
 </Project>
