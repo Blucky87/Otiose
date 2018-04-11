@@ -5,6 +5,16 @@ VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "source\core\Core.csproj", "{2309761B-76EC-4493-8895-26C475DCCA21}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{4744303F-71F0-4FE3-81B2-D1945F3D9440}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "game", "game", "{230CF63F-E85D-4C23-9416-5E863A8F7DE5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nez", "nez", "{E500DCC4-83F7-44C5-92E4-D88C02B446CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez", "libs\Nez\Nez.Portable\Nez.csproj", "{60B7197D-D0D5-405C-90A2-A56903E9B039}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez.PipelineImporter", "libs\Nez\Nez.PipelineImporter\Nez.PipelineImporter.csproj", "{63E831F4-B847-4150-B5AF-CBE059EE27B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +25,23 @@ Global
 		{2309761B-76EC-4493-8895-26C475DCCA21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2309761B-76EC-4493-8895-26C475DCCA21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2309761B-76EC-4493-8895-26C475DCCA21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60B7197D-D0D5-405C-90A2-A56903E9B039}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60B7197D-D0D5-405C-90A2-A56903E9B039}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60B7197D-D0D5-405C-90A2-A56903E9B039}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60B7197D-D0D5-405C-90A2-A56903E9B039}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63E831F4-B847-4150-B5AF-CBE059EE27B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63E831F4-B847-4150-B5AF-CBE059EE27B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63E831F4-B847-4150-B5AF-CBE059EE27B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63E831F4-B847-4150-B5AF-CBE059EE27B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2309761B-76EC-4493-8895-26C475DCCA21} = {230CF63F-E85D-4C23-9416-5E863A8F7DE5}
+		{E500DCC4-83F7-44C5-92E4-D88C02B446CC} = {4744303F-71F0-4FE3-81B2-D1945F3D9440}
+		{60B7197D-D0D5-405C-90A2-A56903E9B039} = {E500DCC4-83F7-44C5-92E4-D88C02B446CC}
+		{63E831F4-B847-4150-B5AF-CBE059EE27B8} = {E500DCC4-83F7-44C5-92E4-D88C02B446CC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {159A49A1-ADF8-4DF6-801E-BE67B5D6C7BD}
