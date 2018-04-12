@@ -1,13 +1,14 @@
 
 ## Third-Party Libraries
 
-###### These libraries are git subtrees of the superproject (otiose).
+##### These libraries are git subtrees of the superproject (otiose).
 All third-party libraries used are my personal forked versions.
 <br />
 <br />
-##### Example:
+#### Example:
 [My forked Nez](https://github.com/Blucky87/Nez) was added to the superproject as a subtree by calling the following at the root of :
 <br />
+
 ```
 git subtree add -P Third-Party/Nez git@github.com:Blucky87/Nez.git master --squash -m "added forked nez subtree"
 ```
@@ -16,8 +17,9 @@ And to Use the following command to pull in a new commit of nez from the forked 
 <br />    
 <br />    
 
-    git subtree pull -P Third-Party/Nez git@github.com:Blucky87/Nez.git master --squash  
-
+```
+git subtree pull -P Third-Party/Nez git@github.com:Blucky87/Nez.git master --squash  
+```
 
 <br />
 
