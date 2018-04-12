@@ -59,11 +59,13 @@ My options boiled down to an XNA port (C#) or libGDX (Java). The games that have
 ## Compiling From Source
 
 ### Requirements
+Linux & Windows:
 + MonoGame 3.6
 + .NET Core 2.0
-+ .NET Portable Class Library
++ .NET Portable Class Library  
 
-
+Linux:
++ Mono
 ### Troubleshooting
 + Core/Third-Party project has missing Dependency
   +  NuGet Package: Try removing and uninstalling it and then reinstalling it from the NuGet Manager.
