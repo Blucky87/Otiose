@@ -54,7 +54,7 @@ namespace DBC
 	/// is possible.)
 	/// </remarks>
 	/// 
-	static class Check
+	public static class Check
 	{
 		#region Interface
 
