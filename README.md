@@ -2,14 +2,17 @@
 **A 2D Action Roleplaying Game Made In C# using MonoGame 3.6 and .Net Core 2.0**
 <br />
 <br />
-
-![Running](https://i.imgur.com/0uegX3Z.gif) ![Breathing](https://i.imgur.com/m9MWYNC.gif) ![Attacking](https://i.imgur.com/ex7frKD.gif)
+<p align="center">
+<img src="https://i.imgur.com/H5lkdYN.gif"><img src="https://i.imgur.com/m9MWYNC.gif"><img src="https://i.imgur.com/M4hthaz.gif"><img src="https://i.imgur.com/R6WyHH4.gif"><img src="https://i.imgur.com/y8aO1tB.gif">
+</p>
 
 
 ### What is otiose?
 It is a game written in C# 
 Most of all it is a work in progress and is something I work on as a hobby to practice programming.  
-
+<p align="center">
+<img src="https://i.imgur.com/XcV08aS.gif"><img src="https://i.imgur.com/Yn8RA1o.gif"><img src="https://i.imgur.com/ex7frKD.gif"><img src=""><img src=""><img src="">
+</p>
 
 ### Goals of the project
 + Anyone with a windows or linux machine should be able to do a `git clone` 
