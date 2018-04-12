@@ -46,10 +46,7 @@ My options boiled down to an XNA port or libGDX. The games that have been releas
 <img src="https://i.imgur.com/mMJ0NGj.gif">
 </p>
 
-
-<p align="center">
-<img src="">
-</p>
+<br />
 
 ## Compiling From Source
 
