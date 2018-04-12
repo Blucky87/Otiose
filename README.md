@@ -3,7 +3,7 @@
 <br />
 <br />
 
-![Imgur](https://i.imgur.com/0uegX3Z.gifv)
+![Imgur](https://i.imgur.com/0uegX3Z.gif)
 
 
 ### What is otiose?
