@@ -18,5 +18,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Third-Party\Nez\Nez.Portable\Nez.csproj" />
+    <ProjectReference Include="..\..\Third-Party\Svelto\ECS\Svelto.ECS.csproj" />
+    <ProjectReference Include="..\..\Third-Party\Svelto\Tasks\Svelto.Tasks.csproj" />
   </ItemGroup>
 </Project>
