@@ -1,4 +1,6 @@
 # Created by https://www.gitignore.io/api/git,monodevelop,visualstudio,jetbrains+all,visualstudiocode
+**/nuget/
+
 
 ### Git ###
 *.orig
