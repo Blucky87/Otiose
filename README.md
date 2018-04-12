@@ -3,7 +3,7 @@
 <br />
 <br />
 
-![Imgur](https://i.imgur.com/0uegX3Z.gif)
+![Running](https://i.imgur.com/0uegX3Z.gif) ![Breathing](https://i.imgur.com/m9MWYNC.gif) ![Attacking](https://i.imgur.com/ex7frKD.gif)
 
 
 ### What is otiose?
