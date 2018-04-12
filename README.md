@@ -11,7 +11,7 @@
 It is a game written in C# 
 Most of all it is a work in progress and is something I work on as a hobby to practice programming.  
 <p align="center">
-<img src="https://i.imgur.com/XcV08aS.gif"><img src="https://i.imgur.com/Yn8RA1o.gif"><img src="https://i.imgur.com/ex7frKD.gif"><img src=""><img src=""><img src="">
+<img src="https://i.imgur.com/XcV08aS.gif"><img src="https://i.imgur.com/Yn8RA1o.gif"><img src="https://i.imgur.com/ex7frKD.gif">
 </p>
 
 ### Goals of the project
