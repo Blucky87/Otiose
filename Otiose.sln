@@ -7,13 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Game\Core\Core.cspr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Third-Party", "Third-Party", "{4744303F-71F0-4FE3-81B2-D1945F3D9440}"
 	ProjectSection(SolutionItems) = preProject
-		libs\README.md = libs\README.md
+		Third-Party\README.md = Third-Party\README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Game", "Game", "{230CF63F-E85D-4C23-9416-5E863A8F7DE5}"
-	ProjectSection(SolutionItems) = preProject
-		content\content.mgcb = content\content.mgcb
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nez", "Nez", "{E500DCC4-83F7-44C5-92E4-D88C02B446CC}"
 EndProject
@@ -29,6 +26,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez.FarseerPhysics", "Third-Party\Nez\Nez.FarseerPhysics\Nez.FarseerPhysics.csproj", "{CB893B1D-CE04-4492-B957-31CE0DCA6C15}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Content", "Content", "{9924511A-0D39-4532-89C1-6347FC64CC0D}"
+	ProjectSection(SolutionItems) = preProject
+		content\content.mgcb = content\content.mgcb
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
