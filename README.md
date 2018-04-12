@@ -6,21 +6,29 @@
 <img src="https://i.imgur.com/H5lkdYN.gif"><img src="https://i.imgur.com/m9MWYNC.gif"><img src="https://i.imgur.com/M4hthaz.gif"><img src="https://i.imgur.com/R6WyHH4.gif"><img src="https://i.imgur.com/y8aO1tB.gif">
 </p>
 
-### Goals of the project
+### Goals of the Project's Codebase
 + Anyone with a windows or linux machine should be able to do a `git clone` 
 and have the entire solution compiled from source and playing in minutes.
 + Everything in plaintext or readable, no meta file obscuration, only .cs, .xml, .json, .png, .config,  etc..
 + Have documentation so that anyone interested in the project could get an overall
 idea of the underlying systems involved by reading the `README.md` files located throughout.
++ Support both Visual Studio, and Rider IDEs on Windows and Linux.
 + Use open source software that is freely available to everyone.
-+ Playable with a Keyboard & Mouse or a standard PS4/XBO style gamepad
-+ 2+ players simultaneously playing locally (net play a huge stretch)
+
+<br />
+
+### Goal of the Project's Gameplay
++ Playable with a Keyboard & Mouse or standard playstation/xbox style controller.
++ 2+ players simultaneously playing locally (net play a huge stretch).
++ fun
++ ...
+
 
 <p align="center">
 <img src="https://i.imgur.com/XcV08aS.gif"><img src="https://i.imgur.com/Yn8RA1o.gif"><img src="https://i.imgur.com/ex7frKD.gif">
 </p>
 
-### What is otiose?
+### What is Otiose?
 A game in a similiar vein as Squaresoft's [Secret of Mana](https://en.wikipedia.org/wiki/Secret_of_Mana) & [Seiken Densetsu 3](https://en.wikipedia.org/wiki/Seiken_Densetsu_3) for the SNES as well as [Legend of Mana](https://en.wikipedia.org/wiki/Legend_of_Mana) for the Playstation.  
 <br />
 But most of all it is just a way for me to practice programming while making something I find interesting.
@@ -36,7 +44,7 @@ But most of all it is just a way for me to practice programming while making som
 
 ### Why MonoGame?
 + I wanted to make a game that is primarily code and wanted to use a language I may find myself working in. 
-My options boiled down to an XNA port or libGDX. The games that have been released with XNA is sold me on MonoGame.
+My options boiled down to an XNA port (C#) or libGDX (Java). The games that have been released with XNA is sold me on MonoGame.
 + The Unity/Unreal/etc game engines seem to prioritize 3D games and I don't like that the click & drag interfaces hide things from you.
 + C# is a very cool language.
 + Open source!
