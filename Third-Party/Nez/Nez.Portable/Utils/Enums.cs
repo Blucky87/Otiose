@@ -34,5 +34,13 @@ namespace Nez
 		Left,
 		Right
 	}
+	
+	
+	public enum BezierType
+	{
+		Quadratic,
+		Cubic
+	}
+
 }
 
