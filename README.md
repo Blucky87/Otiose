@@ -66,6 +66,13 @@ Linux & Windows:
 
 Linux:
 + Mono
+
+### Steps
+1. Clone the repository with: `git clone https://github.com/Blucky87/otiose.git`.
+2. Run `otiose/Content/content.mgcb` and build the assets.
+3. Open `otiose/Otiose.sln` with either Rider or Visual Studio IDE.
+4. Build and run the Core project.
+
 ### Troubleshooting
 + Core/Third-Party project has missing Dependency
   +  NuGet Package: Try removing and uninstalling it and then reinstalling it from the NuGet Manager.
