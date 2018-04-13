@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez", "Nez.Portable\Nez.csproj", "{BC9E8B03-73A1-46F1-80C5-36549865E4C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez.FarseerPhysics", "Nez.FarseerPhysics\Nez.FarseerPhysics.csproj", "{A846CAC2-C82E-4854-A345-86199FE3479F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez.PipelineImporter", "Nez.PipelineImporter\Nez.PipelineImporter.csproj", "{2C705D52-B0EA-40E7-B2EF-EC8BDE678CED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC9E8B03-73A1-46F1-80C5-36549865E4C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC9E8B03-73A1-46F1-80C5-36549865E4C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC9E8B03-73A1-46F1-80C5-36549865E4C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC9E8B03-73A1-46F1-80C5-36549865E4C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A846CAC2-C82E-4854-A345-86199FE3479F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A846CAC2-C82E-4854-A345-86199FE3479F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A846CAC2-C82E-4854-A345-86199FE3479F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A846CAC2-C82E-4854-A345-86199FE3479F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C705D52-B0EA-40E7-B2EF-EC8BDE678CED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C705D52-B0EA-40E7-B2EF-EC8BDE678CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C705D52-B0EA-40E7-B2EF-EC8BDE678CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C705D52-B0EA-40E7-B2EF-EC8BDE678CED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
