@@ -17,6 +17,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin NezDefaultBMFont.xnb
-/copy:NezDefaultBMFont.xnb
+#begin nez/NezDefaultBMFont.xnb
+/copy:nez/NezDefaultBMFont.xnb
 

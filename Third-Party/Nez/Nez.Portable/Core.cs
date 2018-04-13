@@ -189,7 +189,7 @@ namespace Nez
 
 			// prep the default Graphics system
 			graphicsDevice = GraphicsDevice;
-			var font = content.Load<BitmapFont>( "NezDefaultBMFont" );
+			var font = content.Load<BitmapFont>( "nez/NezDefaultBMFont" );
 			Graphics.instance = new Graphics( font );
 		}
 
