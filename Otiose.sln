@@ -40,8 +40,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Svelto.ECS", "Third-Party\S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Svelto.Common", "Third-Party\Svelto\Common\Svelto.Common.csproj", "{5DBFB67B-9B6E-4E28-A456-035FEDEEF55A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "Third-Party\ClassLibrary1\ClassLibrary1.csproj", "{A99518DD-8160-4A54-A7F4-6831B3FE9DAB}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,10 +74,6 @@ Global
 		{5DBFB67B-9B6E-4E28-A456-035FEDEEF55A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DBFB67B-9B6E-4E28-A456-035FEDEEF55A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DBFB67B-9B6E-4E28-A456-035FEDEEF55A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A99518DD-8160-4A54-A7F4-6831B3FE9DAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A99518DD-8160-4A54-A7F4-6831B3FE9DAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A99518DD-8160-4A54-A7F4-6831B3FE9DAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A99518DD-8160-4A54-A7F4-6831B3FE9DAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,7 +88,6 @@ Global
 		{500593DC-E9E3-4999-B1E3-B558D56599BC} = {7CBFE8BC-04D9-4E93-9A8D-1936698AAFE8}
 		{682B43F1-099D-47E8-B50A-40B3CD4CE61D} = {7CBFE8BC-04D9-4E93-9A8D-1936698AAFE8}
 		{5DBFB67B-9B6E-4E28-A456-035FEDEEF55A} = {7CBFE8BC-04D9-4E93-9A8D-1936698AAFE8}
-		{A99518DD-8160-4A54-A7F4-6831B3FE9DAB} = {4744303F-71F0-4FE3-81B2-D1945F3D9440}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {159A49A1-ADF8-4DF6-801E-BE67B5D6C7BD}
