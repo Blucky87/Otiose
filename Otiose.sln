@@ -28,9 +28,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nez.FarseerPhysics", "Third-Party\Nez\Nez.FarseerPhysics\Nez.FarseerPhysics.csproj", "{CB893B1D-CE04-4492-B957-31CE0DCA6C15}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Content", "Content", "{9924511A-0D39-4532-89C1-6347FC64CC0D}"
-	ProjectSection(SolutionItems) = preProject
-		content\content.mgcb = content\content.mgcb
-	EndProjectSection
+ProjectSection(SolutionItems) = preProject
+	Content\content.mgcb = Content\content.mgcb
+EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Svelto", "Svelto", "{7CBFE8BC-04D9-4E93-9A8D-1936698AAFE8}"
 EndProject
