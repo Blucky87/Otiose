@@ -15,7 +15,7 @@ namespace Otiose
         static void Main()
         {
 
-            uint secondsToSleep = 3;
+            uint secondsToSleep = 0;
 
             while (secondsToSleep > 0)
             {
@@ -25,7 +25,7 @@ namespace Otiose
                 secondsToSleep--;
             }
 
-            using (var game = new GameCore())
+            using (var game = new GameCore2())
                 game.Run();
         }
     }
