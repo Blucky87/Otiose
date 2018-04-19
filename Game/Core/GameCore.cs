@@ -9,15 +9,21 @@ using Nez;
 using Otiose.Input;
 using Otiose.Input.Setup;
 using Otiose.Input.Setup.Actions;
+using Svelto.ECS;
 
 
 namespace Otiose
 {
     public class GameCore : Nez.Core
     {
+        private EnginesRoot _enginesRoot;
+
+
+
         protected override void Initialize()
         {
             SetupWindow();
+            BootstrapEnginesRoot();
             SetupGameCommandManager();
             SetupInput();
 
@@ -67,7 +73,12 @@ namespace Otiose
             
             base.Initialize();
         }
-        
+
+        private void BootstrapEnginesRoot()
+        {
+            
+        }
+
         protected override void Update(GameTime gametime) {
            
             base.Update(gametime);
