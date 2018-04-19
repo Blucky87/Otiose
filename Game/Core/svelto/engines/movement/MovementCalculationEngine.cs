@@ -17,10 +17,25 @@ namespace Otiose.svelto.engines
 
         public void Step(ref MovementInfo token, int condition)
         {
+
+            CalculateNewPosition(token);
+        }
+
+        private void CalculateNewPosition(MovementInfo token)
+        {
             EGID entityModifierID = token.EntityMovementId;
             var entity = entityViewsDB.QueryEntityView<MovementEntityView>(entityModifierID);
-            token.EntityMovementId
-            entity.MovementInputComponent
+
+            entity.PositionComponent.X = CalculatedPositionX(token);
+            entity.PositionComponent.Y = CalculatedPositionY(token);
+        }
+
+        private float CalculatedPositionX(MovementInfo token)
+        {
+            return token.RunSpeed * token.Position.X;
         }
     }
+
+
+    // (check if entity can move at all) -> (check direction to move) -> (check speed to move) -> (calculate where to move) -> (move to calculated place)
 }

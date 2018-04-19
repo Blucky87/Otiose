@@ -2,8 +2,8 @@
 {
     public interface IPositionComponent : IComponent
     {
-        int X { get; set; }
-        int Y { get; set; }
+        float X { get; set; }
+        float Y { get; set; }
         int PhysicalLayer { get; set; }
         int RenderLayer { get; set; }
     }

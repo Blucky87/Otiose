@@ -32,15 +32,18 @@ namespace Otiose.svelto.engines
                     {
                         Console.WriteLine($"Entity attempting to move");
                         var able = CheckIfAbleToMove(entity);
-                        var movementInfo = new MovementInfo(entity.ID);
+
+                        var entityGuid = entity.ID;
+                        var movementVector = entity.MovementInputComponent.Vector;
+                        var aimVector = entity.AimInputComponent.Vector;
+                        var walkSpeed = entity.MovementModifiersComponent.WalkSpeedModifier;
+                        var runSpeed = entity.MovementModifiersComponent.RunSpeedModifier;
+
+                        var movementInfo = new MovementInfo(entityGuid, movementVector, aimVector, walkSpeed, runSpeed);
 
                         if (able)
                         {
                             _sequencer.Next(this, ref movementInfo, MovementCondition.CanMove);
-                        }
-                        else
-                        {
-                            _sequencer.Next(this, ref movementInfo, MovementCondition.CanNotMove);
                         }
                     }
                 }
