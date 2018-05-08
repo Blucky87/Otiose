@@ -22,48 +22,48 @@ namespace Otiose
             SetupInput();
 
            
-            Scene myScene = Scene.createWithDefaultRenderer();
+            var mainScene = Scene.createWithDefaultRenderer();
             
             //Create component that will represent who owns the entity
-            PlayerIndexComponent playerIndexComponent = new PlayerIndexComponent(PlayerIndex.One);
+            var playerIndexComponent = new PlayerIndexComponent(PlayerIndex.One);
 
             //Create Action Set Component to hold link between binding device and binded action
-            PlayerActionSetComponent actionSetComponent = new PlayerActionSetComponent();
+            var actionSetComponent = new PlayerActionSetComponent();
             actionSetComponent.PlayerActionSet = new PlayerActionSet();
             actionSetComponent.PlayerActionSet.SetupDefaultBindings();
             actionSetComponent.PlayerActionSet.SetupDefaultKeebBindings();
             
             //Create controller profile component to hold behavior of actions
-            ControllerProfileComponent controlProfileComponent = new ControllerProfileComponent();
+            var controlProfileComponent = new ControllerProfileComponent();
             
-            MovementComponent movementComponent = new MovementComponent();
+            var movementComponent = new MovementComponent();
 
             //create service to 
-            Matcher matcher = new Matcher().all( typeof( PlayerActionSetComponent ), typeof( ControllerProfileComponent ) );
-            PlayerActionSetToControllerProfileSystem playerActionSetToControllerProfileSystem = new PlayerActionSetToControllerProfileSystem(matcher);
+            var matcher = new Matcher().all( typeof( PlayerActionSetComponent ), typeof( ControllerProfileComponent ) );
+            var playerActionSetToControllerProfileSystem = new PlayerActionSetToControllerProfileSystem(matcher);
 
 
             matcher = new Matcher().all(typeof(PlayerActionSetComponent));
-            PlayerActionUpdateSystem playerActionUpdateSystem = new PlayerActionUpdateSystem(matcher);
+            var playerActionUpdateSystem = new PlayerActionUpdateSystem(matcher);
 
             matcher = new Matcher().all(typeof(PlayerIndexComponent), typeof(PlayerActionSetComponent));
-            PlayerDeviceToActionSetSystem playerDeviceToActionSet = new PlayerDeviceToActionSetSystem(matcher);
+            var playerDeviceToActionSet = new PlayerDeviceToActionSetSystem(matcher);
 
             
-            Entity entity = myScene.createEntity("Hero");
+            var entityHero = mainScene.createEntity("Hero");
             
-            entity.addComponent(playerIndexComponent);
-            entity.addComponent(actionSetComponent);
-            entity.addComponent(controlProfileComponent);
-            entity.addComponent(movementComponent);
+            entityHero.addComponent(playerIndexComponent);
+            entityHero.addComponent(actionSetComponent);
+            entityHero.addComponent(controlProfileComponent);
+            entityHero.addComponent(movementComponent);
 
-            myScene.addEntityProcessor(playerDeviceToActionSet);
-            myScene.addEntityProcessor(playerActionSetToControllerProfileSystem);
-            myScene.addEntityProcessor(playerActionUpdateSystem);
+            mainScene.addEntityProcessor(playerDeviceToActionSet);
+            mainScene.addEntityProcessor(playerActionSetToControllerProfileSystem);
+            mainScene.addEntityProcessor(playerActionUpdateSystem);
            
-            entity.getComponent<ControllerProfileComponent>().ControllerProfile = new RoamProfile(entity);
+            entityHero.getComponent<ControllerProfileComponent>().ControllerProfile = new RoamProfile(entityHero);
             
-            scene = myScene;
+            scene = mainScene;
             
             base.Initialize();
         }
