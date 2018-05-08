@@ -56,13 +56,13 @@ My options boiled down to an XNA port (C#) or libGDX (Java). The games that have
 
 <br />
 
+
 ## Compiling From Source
 
 ### Requirements
 Linux & Windows:
 + MonoGame 3.6
-+ .NET Core 2.0
-+ .NET Portable Class Library  
++ .NET Core 2.0  
 
 Linux:
 + Mono
@@ -70,7 +70,7 @@ Linux:
 ### Steps
 1. Clone the repository with: `git clone https://github.com/Blucky87/otiose.git`.
 2. Run `otiose/Content/content.mgcb` and build the assets.
-3. Open `otiose/Otiose.sln` with either Rider or Visual Studio IDE.
+3. Open `otiose/Otiose.sln` with either Rider or Visual Studio 2017 IDE.
 4. Build and run the Core project.
 
 ### Troubleshooting
