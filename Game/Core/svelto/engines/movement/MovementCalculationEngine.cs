@@ -27,7 +27,7 @@ namespace Otiose.svelto.engines
             var entity = entityViewsDB.QueryEntityView<MovementEntityView>(entityModifierID);
 
             entity.PositionComponent.X = CalculatedPositionX(token);
-            entity.PositionComponent.Y = CalculatedPositionY(token);
+//            entity.PositionComponent.Y = CalculatedPositionY(token);
         }
 
         private float CalculatedPositionX(MovementInfo token)

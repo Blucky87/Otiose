@@ -8,5 +8,7 @@ namespace Otiose.svelto.implementors
         public int Y { get; set; }
         public int PhysicalLayer { get; set; }
         public int RenderLayer { get; set; }
+        float IPositionComponent.X { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        float IPositionComponent.Y { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
     }
 }

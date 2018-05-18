@@ -12,6 +12,8 @@ namespace Otiose
 
         protected override void Initialize()
         {
+            base.Initialize();
+
             BuildEngines();
             
         }
@@ -19,31 +21,6 @@ namespace Otiose
         private void BuildEngines()
         {
             BootstrapEnginesRoot();
-
-            var movementSequence = new Sequencer();
-            var movementCheckEngine = new MovementCheckEngine(movementSequence);
-            var movementInputEngine = new MovementInputEngine();
-            var movementCalculationEngine = new MovementCalculationEngine();
-            var movementPlacementEngine = new MovementPlacementEngine();
-            var noMoveEngine = new NoMoveEngine();
-        
-
-            movementSequence.SetSequence(
-                new Steps
-                {
-                    {
-                        movementCheckEngine,
-                        new To
-                        {
-                            { MovementCondition.CanMove, new IStep[]{ movementInputEngine } },
-                            { MovementCondition.CanNotMove, new IStep[] { noMoveEngine } }
-                        }
-                    },
-
-                });
-            
-
-            
 
 
         }
