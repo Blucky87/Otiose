@@ -75,10 +75,10 @@ namespace Otiose.Input.Setup
         {
             Console.WriteLine($"Setting Default Keyboard Bindings for Input Action Set");
             
-            LeftStickLeft.AddDefaultBinding(Keys.J);
+            LeftStickLeft.AddDefaultBinding(Keys.H);
             LeftStickRight.AddDefaultBinding(Keys.L);
-            LeftStickUp.AddDefaultBinding(Keys.I);
-            LeftStickDown.AddDefaultBinding(Keys.K);
+            LeftStickUp.AddDefaultBinding(Keys.K);
+            LeftStickDown.AddDefaultBinding(Keys.J);
             Action1.AddDefaultBinding(Keys.Q);
             Action2.AddDefaultBinding(Keys.W);
             RightBumper.AddDefaultBinding(Keys.E);

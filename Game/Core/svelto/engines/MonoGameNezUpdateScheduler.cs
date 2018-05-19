@@ -1,4 +1,5 @@
-﻿using Nez;
+﻿using System;
+using Nez;
 using Svelto.ECS.Schedulers;
 using Svelto.WeakEvents;
 
@@ -6,7 +7,7 @@ namespace Otiose.svelto.engines
 {
     public sealed class MonoGameNezUpdateScheduler : EntitySubmissionScheduler
     {
-        private Scheduler scheduler;
+        public Scheduler scheduler;
 
         public MonoGameNezUpdateScheduler()
         {
@@ -18,14 +19,16 @@ namespace Otiose.svelto.engines
             scheduler.OnUpdate = submitEntityViews;
         }
 
-        class Scheduler : IUpdatableManager
+        public class Scheduler : IUpdatableManager
         {
             internal WeakAction OnUpdate;
 
             public void update()
             {
                 if (OnUpdate.IsValid)
+                {
                     OnUpdate.Invoke();
+                }
             }
 
         }

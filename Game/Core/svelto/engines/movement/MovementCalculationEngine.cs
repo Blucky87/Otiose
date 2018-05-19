@@ -12,9 +12,6 @@ namespace Otiose.svelto.engines
            
         }
 
-
-
-
         public void Step(ref MovementInfo token, int condition)
         {
 
@@ -26,7 +23,7 @@ namespace Otiose.svelto.engines
             EGID entityModifierID = token.EntityMovementId;
             var entity = entityViewsDB.QueryEntityView<MovementEntityView>(entityModifierID);
 
-            entity.PositionComponent.X = CalculatedPositionX(token);
+//            entity.PositionComponent.X = CalculatedPositionX(token);
 //            entity.PositionComponent.Y = CalculatedPositionY(token);
         }
 

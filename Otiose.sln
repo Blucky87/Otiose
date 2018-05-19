@@ -42,7 +42,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Svelto.Common", "Third-Part
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VelcroPhysics", "VelcroPhysics", "{2B89392D-88AD-49A3-A899-AB71E1C9E9F4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VelcroPhysics.MonoGame", "Third-Party\VelcroPhysics\VelcroPhysics\VelcroPhysics.MonoGame.csproj", "{CF77F9D8-98F8-4E15-8F71-765FBE9E0198}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VelcroPhysics.MonoGame", "Third-Party\VelcroPhysics\VelcroPhysics\VelcroPhysics.MonoGame.csproj", "{8F94A0C5-FDCC-4916-A951-8117F84A0927}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,10 +78,10 @@ Global
 		{5DBFB67B-9B6E-4E28-A456-035FEDEEF55A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DBFB67B-9B6E-4E28-A456-035FEDEEF55A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DBFB67B-9B6E-4E28-A456-035FEDEEF55A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CF77F9D8-98F8-4E15-8F71-765FBE9E0198}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF77F9D8-98F8-4E15-8F71-765FBE9E0198}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CF77F9D8-98F8-4E15-8F71-765FBE9E0198}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CF77F9D8-98F8-4E15-8F71-765FBE9E0198}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F94A0C5-FDCC-4916-A951-8117F84A0927}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F94A0C5-FDCC-4916-A951-8117F84A0927}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F94A0C5-FDCC-4916-A951-8117F84A0927}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F94A0C5-FDCC-4916-A951-8117F84A0927}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,7 +97,7 @@ Global
 		{682B43F1-099D-47E8-B50A-40B3CD4CE61D} = {7CBFE8BC-04D9-4E93-9A8D-1936698AAFE8}
 		{5DBFB67B-9B6E-4E28-A456-035FEDEEF55A} = {7CBFE8BC-04D9-4E93-9A8D-1936698AAFE8}
 		{2B89392D-88AD-49A3-A899-AB71E1C9E9F4} = {4744303F-71F0-4FE3-81B2-D1945F3D9440}
-		{CF77F9D8-98F8-4E15-8F71-765FBE9E0198} = {2B89392D-88AD-49A3-A899-AB71E1C9E9F4}
+		{8F94A0C5-FDCC-4916-A951-8117F84A0927} = {2B89392D-88AD-49A3-A899-AB71E1C9E9F4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {159A49A1-ADF8-4DF6-801E-BE67B5D6C7BD}

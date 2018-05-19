@@ -6,11 +6,12 @@ using Svelto.ECS;
 
 namespace Core.svelto.entityviews
 {
-    class PhysicsEntityView : EntityView
+    public class PhysicsEntityView : EntityView
     {
         public IRigidBodyComponent RigidBody;
         public IPhysicsForceComponent Force;
         public IPhysicsImpulseComponent Impulse;
         public IPhysicsTorqueComponent Torque;
+        public IMovementDriverComponent MovementDriver;
     }
 }

@@ -11,6 +11,11 @@ namespace Core.svelto.implementors
     class RigidBodyComponentImplementor : IRigidBodyComponent, IImplementor
     {
         public Body Body { get; set; }
+
+        public RigidBodyComponentImplementor(Body body)
+        {
+            Body = body;
+        }
     }
 
     class PhysicsForceComponent : IPhysicsForceComponent, IImplementor
