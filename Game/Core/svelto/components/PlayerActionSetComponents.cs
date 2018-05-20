@@ -21,12 +21,12 @@ namespace Core.svelto.components
 
     public interface IPlayerActionLeftStickComponent : IComponent
     {
-        PlayerAction Value { get; set; }
+        PlayerTwoAxisAction Value { get; set; }
     }
 
     public interface IPlayerActionRightStickComponent : IComponent
     {
-        PlayerAction Value { get; set; }
+        PlayerTwoAxisAction Value { get; set; }
     }
 
     public interface IPlayerActionOneComponent : IComponent

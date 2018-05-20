@@ -58,12 +58,13 @@ namespace Otiose
 
             //add movement driver, the vector value inside 
             var movementDriverComponent = new MovementDriverComponent();
+
             var playerActionSetComponent = new PlayerActionSetComponent(input.playerActionSetOne);
-            var playerActionLeftStickComponent = new PlayerActionTwoAxisComponent();
-            var playerActionRightStickComponent = new PlayerActionTwoAxisComponent();
             var playerActionSetContext = new PlayerActionContextComponent();
-            var playerActionOneComponent = new PlayerActionButtonComponent();
-            var playerActionTwoComponent = new PlayerActionButtonComponent();
+            var playerActionLeftStickComponent = new PlayerTwoAxisActionComponent();
+            var playerActionRightStickComponent = new PlayerTwoAxisActionComponent();
+            var playerActionOneComponent = new PlayerActionComponent();
+            var playerActionTwoComponent = new PlayerActionComponent();
 
             testEntityImplementors.Add(movementDriverComponent);
             testEntityImplementors.Add(playerActionOneComponent);
@@ -86,6 +87,7 @@ namespace Otiose
             var basicMoveEngine = new BasicMoveEngine();
             var physicsForceEngine = new PhysicsForceEngine();
             var movementDriverEngine = new MovementDriverEngine();
+            var playerActionSetUpdateEngine = new PlayerActionSetUpdateEngine();
 
             var testEngine = new TestEngine();
 
@@ -121,6 +123,7 @@ namespace Otiose
             gameEnginesRoot.AddEngine(physicsForceEngine);
             gameEnginesRoot.AddEngine(playerActionLeftStickUpdateEngine);
             gameEnginesRoot.AddEngine(movementDriverEngine);
+            gameEnginesRoot.AddEngine(playerActionSetUpdateEngine);
 
 
             gameEngineEntityFactory.BuildEntity<TestEntityDescriptor>(1, testEntityImplementors.ToArray());
