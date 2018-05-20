@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mime;
@@ -7,6 +8,7 @@ using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Nez;
+using Svelto.Tasks;
 
 namespace Otiose.Input
 {
@@ -20,11 +22,14 @@ namespace Otiose.Input
         int timeStep;
         int bufferSize;
 
+        private ITaskRoutine _taskRoutine;
 
         public GamePadInputDeviceManager()
         {
             gamePadState = new RingBuffer<GamePadState>[maxDevices];
             deviceConnected = new bool[maxDevices];
+
+            _taskRoutine = TaskRunner.Instance.AllocateNewTaskRoutine().SetEnumerator(GamePadStateEnqueue());
 
             if (InputManager.XInputUpdateRate == 0)
             {
@@ -42,51 +47,30 @@ namespace Otiose.Input
                 gamePadState[deviceIndex] = new RingBuffer<GamePadState>(bufferSize);
             }
 
-            StartWorker();
-
             for (int deviceIndex = 0; deviceIndex < maxDevices; deviceIndex++)
             {
                 GamePadInputDevice gamePad = new GamePadInputDevice(deviceIndex, this);
                 devices.Add(gamePad);
             }
-        }
-        
-        void StartWorker()
-        {
-            if (thread == null)
-            {
-                thread = new Thread(Worker);
-                thread.IsBackground = true;
-                thread.Start();
-            }
+
+            _taskRoutine.Start();
         }
 
 
-        void StopWorker()
-        {
-            if (thread != null)
-            {
-                thread.Abort();
-                thread.Join();
-                thread = null;
-            }
-        }
-
-
-        void Worker()
+        IEnumerator GamePadStateEnqueue()
         {
             while (true)
             {
-                
-                for (int deviceIndex = 0; deviceIndex < maxDevices; deviceIndex++)
+                for (int deviceIndex = 0; deviceIndex < devices.Count; deviceIndex++)
                 {
-                    gamePadState[deviceIndex].Enqueue(GamePad.GetState((PlayerIndex)deviceIndex));
+                    gamePadState[deviceIndex].Enqueue(GamePad.GetState((PlayerIndex) deviceIndex));
                 }
+
+                yield return null;
 
                 Thread.Sleep(timeStep);
             }
         }
-
 
         internal GamePadState GetState(int deviceIndex)
         {
@@ -132,8 +116,8 @@ namespace Otiose.Input
 
         public override void Destroy()
         {
-            StopWorker();
-            
+            _taskRoutine.Stop();
+
             foreach (InputDevice device in devices)
             {
                 device.StopVibration();
@@ -167,4 +151,5 @@ namespace Otiose.Input
             }
         }
     }
+
 }

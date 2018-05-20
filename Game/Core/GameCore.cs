@@ -1,4 +1,4 @@
-﻿
+
 
 using System.ComponentModel.DataAnnotations;
 using Core.components;
@@ -98,3 +98,4 @@ namespace Otiose
         }
     }
 }
+

@@ -2,9 +2,12 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Authors>Brian</Authors>
+    <Product />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>../../bin/Debug/</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NETCOREAPP2_0;MONOGAME</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Content\**\*.*">
@@ -29,5 +32,6 @@
     <ProjectReference Include="..\..\Third-Party\Nez\Nez.Portable\Nez.csproj" />
     <ProjectReference Include="..\..\Third-Party\Svelto\ECS\Svelto.ECS.csproj" />
     <ProjectReference Include="..\..\Third-Party\Svelto\Tasks\Svelto.Tasks.csproj" />
+    <ProjectReference Include="..\..\Third-Party\VelcroPhysics\VelcroPhysics\VelcroPhysics.MonoGame.csproj" />
   </ItemGroup>
 </Project>
