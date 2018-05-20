@@ -18,14 +18,21 @@ namespace Core.svelto.implementors
         {
             Value = playerActionSet;
         }
+
     }
 
-    class PlayerTwoAxisActionComponent : IMoveActionComponent, IAimComponent, IImplementor
+    class PlayerActionComponent : IPlayerAction, IImplementor
     {
-        public Vector2 Value { get; set; }
+        public PlayerAction Value { get; set; }
+
+        public PlayerActionComponent(PlayerAction playerAction)
+        {
+            Value = playerAction;
+        }
+
     }
 
-    class PlayerActionSetContextComponent : IPlayerActionSetContextComponent, IImplementor
+    class PlayerActionContextComponent : IPlayerActionContextComponent, IImplementor
     {
         public int Value { get; set; }
     }

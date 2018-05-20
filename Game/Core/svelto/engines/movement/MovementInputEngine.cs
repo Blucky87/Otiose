@@ -1,4 +1,5 @@
-﻿using Otiose.svelto.entityviews;
+﻿using Core.svelto.entityviews;
+using Otiose.svelto.entityviews;
 using Svelto.ECS;
 
 namespace Otiose.svelto.engines
@@ -14,7 +15,7 @@ namespace Otiose.svelto.engines
 
         public void Step(ref MovementInfo token, int condition)
         {
-            var entity = entityViewsDB.QueryEntityView<MovementEntityView>(token.EntityMovementId);
+            var entity = entityViewsDB.QueryEntityView<PlayerActionLeftStickEntityView>(token.EntityMovementId);
 
             
         }

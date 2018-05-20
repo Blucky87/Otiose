@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Core.svelto.components;
+using Core.svelto.entityviews;
 using Microsoft.Xna.Framework;
 using Otiose.svelto.entityviews;
 using Svelto.ECS;

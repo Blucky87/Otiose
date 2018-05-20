@@ -21,7 +21,7 @@ namespace Otiose.svelto.engines
         private void CalculateNewPosition(MovementInfo token)
         {
             EGID entityModifierID = token.EntityMovementId;
-            var entity = entityViewsDB.QueryEntityView<MovementEntityView>(entityModifierID);
+//            var entity = entityViewsDB.QueryEntityView<PlayerActionLeftStickEntityView>(entityModifierID);
 
 //            entity.PositionComponent.X = CalculatedPositionX(token);
 //            entity.PositionComponent.Y = CalculatedPositionY(token);

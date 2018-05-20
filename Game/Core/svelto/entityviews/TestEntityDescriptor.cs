@@ -6,7 +6,14 @@ using Svelto.ECS;
 
 namespace Core.svelto.entityviews
 {
-    class TestEntityDescriptor : GenericEntityDescriptor<PhysicsEntityView, MovementEntityView, PlayerActionSetEntityView>
+    class TestEntityDescriptor : 
+        GenericEntityDescriptor<PhysicsEntityView,
+            MovementEntityView,
+            PlayerActionSetEntityView,
+            PlayerActionLeftStickEntityView,
+            PlayerActionRightStickEntityView,
+            PlayerActionOneEntityView,
+            PlayerActionTwoEntityView>
     {
     }
 }

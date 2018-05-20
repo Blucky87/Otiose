@@ -105,4 +105,26 @@
         
         public static readonly IEntityViewBuilder[] entityViewBuilders;
     }
+
+
+    public abstract class GenericEntityDescriptor<T, U, V, W, X, Y, Z> : IEntityDescriptor where T : EntityView, new()
+        where U : EntityView, new()
+        where V : EntityView, new()
+        where W : EntityView, new()
+        where X : EntityView, new()
+        where Y : EntityView, new()
+        where Z : EntityView, new ()
+    {
+        static GenericEntityDescriptor()
+        {
+            entityViewBuilders = new IEntityViewBuilder[] { new EntityViewBuilder<T>(), new EntityViewBuilder<U>(), new EntityViewBuilder<V>(), new EntityViewBuilder<W>(), new EntityViewBuilder<X>(), new EntityViewBuilder<Y>(), new EntityViewBuilder<Z>() };
+        }
+
+        public IEntityViewBuilder[] entityViewsToBuild
+        {
+            get { return entityViewBuilders; }
+        }
+
+        public static readonly IEntityViewBuilder[] entityViewBuilders;
+    }
 }

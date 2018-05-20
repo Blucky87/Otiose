@@ -7,12 +7,7 @@ namespace Otiose.svelto.entityviews
     public class MovementEntityView : EntityView
     {
         public IMovementDriverComponent MovementDriver;
-
-        public IMoveActionComponent MoveAction;
-//        public IAimDriverComponent AimInputComponent;
-//        public IMoveActionComponent MoveActionComponent;
-
-
+        public IPlayerActionLeftStickComponent PlayerActionLeftStick;
     }
 
 

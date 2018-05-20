@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Otiose.Input;
 using Otiose.Input.Setup;
 using Otiose.svelto;
 using Svelto.ECS;
@@ -13,31 +14,32 @@ namespace Core.svelto.components
         PlayerActionSet Value { get; set; }
     }
 
-    public interface IMoveActionComponent : IComponent
+    public interface IPlayerAction : IComponent
     {
-        Vector2 Value { get; set; }
+        PlayerAction Value { get; set; }
     }
 
-    public interface IAimComponent : IComponent
+    public interface IPlayerActionLeftStickComponent : IComponent
     {
-        Vector2 Value { get; set; }
+        PlayerAction Value { get; set; }
     }
 
-    public interface IActionOne : IComponent
+    public interface IPlayerActionRightStickComponent : IComponent
     {
-        bool WasPressed { get; }
-        bool IsPressed { get; }
-        bool WasReleased { get; }
+        PlayerAction Value { get; set; }
     }
 
-    public interface IActionTwo : IComponent
+    public interface IPlayerActionOneComponent : IComponent
     {
-        bool WasPressed { get; }
-        bool IsPressed { get; }
-        bool WasReleased { get; }
+        PlayerAction Value { get; set; }
     }
 
-    public interface IPlayerActionSetContextComponent : IComponent
+    public interface IPlayerActionTwoComponent : IComponent
+    {
+        PlayerAction Value { get; set; }
+    }
+
+    public interface IPlayerActionContextComponent : IComponent
     {
         int Value { get; set; }
     }

@@ -8,4 +8,8 @@
     <DefineConstants>TRACE;DEBUG;MONOGAME</DefineConstants>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.Portable" Version="3.6.0.1625" />
+  </ItemGroup>
+
 </Project>

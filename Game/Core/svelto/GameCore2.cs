@@ -43,6 +43,7 @@ namespace Otiose
 
             var body = BodyFactory.CreateRectangle(world, ConvertUnits.ToSimUnits(64f), ConvertUnits.ToSimUnits(64f), 1f, Vector2.One, bodyType: BodyType.Dynamic);
             body.Mass = 1f;
+            body.SetTransform(Vector2.Zero, 0f);
             
 
             var rigidBodyComponent = new RigidBodyComponentImplementor(body);
@@ -57,17 +58,19 @@ namespace Otiose
 
             //add movement driver, the vector value inside 
             var movementDriverComponent = new MovementDriverComponent();
+            var playerActionSetComponent = new PlayerActionSetComponent(input.playerActionSetOne);
+            var playerActionLeftStickComponent = new PlayerActionTwoAxisComponent();
+            var playerActionRightStickComponent = new PlayerActionTwoAxisComponent();
+            var playerActionSetContext = new PlayerActionContextComponent();
+            var playerActionOneComponent = new PlayerActionButtonComponent();
+            var playerActionTwoComponent = new PlayerActionButtonComponent();
 
             testEntityImplementors.Add(movementDriverComponent);
-
-            var playerActionSetComponent = new PlayerActionSetComponent(input.playerActionSetOne);
-            var movementComponent = new PlayerTwoAxisActionComponent();
-            var aimComponent = new PlayerTwoAxisActionComponent();
-            var playerActionSetContext = new PlayerActionSetContextComponent();
-
+            testEntityImplementors.Add(playerActionOneComponent);
+            testEntityImplementors.Add(playerActionTwoComponent);
             testEntityImplementors.Add(playerActionSetComponent);
-            testEntityImplementors.Add(movementComponent);
-            testEntityImplementors.Add(aimComponent);
+            testEntityImplementors.Add(playerActionLeftStickComponent);
+            testEntityImplementors.Add(playerActionRightStickComponent);
             testEntityImplementors.Add(playerActionSetContext);
             
 
@@ -77,20 +80,20 @@ namespace Otiose
 
 
 
-            var inputActionSequencer = new Sequencer();
+            var playerActionLeftStickSequencer = new Sequencer();
 
-            var playerActionUpdateEngine = new PlayerActionUpdateEngine(inputActionSequencer);
+            var playerActionLeftStickUpdateEngine = new PlayerActionLeftStickUpdateEngine(playerActionLeftStickSequencer);
             var basicMoveEngine = new BasicMoveEngine();
             var physicsForceEngine = new PhysicsForceEngine();
             var movementDriverEngine = new MovementDriverEngine();
 
             var testEngine = new TestEngine();
 
-            inputActionSequencer.SetSequence(
+            playerActionLeftStickSequencer.SetSequence(
                 new Steps
                 {
                     {
-                        playerActionUpdateEngine,
+                        playerActionLeftStickUpdateEngine,
                         new To
                         {
                             {PlayerActionContext.Roam, new IStep[] {basicMoveEngine}},
@@ -116,7 +119,7 @@ namespace Otiose
             gameEnginesRoot.AddEngine(testEngine);
             gameEnginesRoot.AddEngine(basicMoveEngine);
             gameEnginesRoot.AddEngine(physicsForceEngine);
-            gameEnginesRoot.AddEngine(playerActionUpdateEngine);
+            gameEnginesRoot.AddEngine(playerActionLeftStickUpdateEngine);
             gameEnginesRoot.AddEngine(movementDriverEngine);
 
 
@@ -142,7 +145,6 @@ namespace Otiose
         protected override void Update(GameTime gametime)
         {
             base.Update(gametime);
-//            if()
 
             world.Step((float)gametime.ElapsedGameTime.TotalMilliseconds * 0.001f);
             
