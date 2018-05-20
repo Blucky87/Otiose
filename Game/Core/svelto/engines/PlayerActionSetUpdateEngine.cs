@@ -4,20 +4,16 @@ using System.Collections.Generic;
 using System.Text;
 using Core.svelto.entityviews;
 using Svelto.ECS;
+using Svelto.ECS.Internal;
 using Svelto.Tasks;
 
 namespace Core.svelto.engines
 {
-    public class PlayerActionSetUpdateEngine : IQueryingEntityViewEngine
+    public class PlayerActionSetUpdateEngine : SingleEntityViewEngine<PlayerActionSetEntityView>
     {
         PlayerActionSetEntityView _playerActionSetEntityView;
+        PlayerActionLeftStickEntityView _playerActionLeftStickEntityView;
         private ITaskRoutine _taskRoutine;
-        public IEntityViewsDB entityViewsDB { get; set; }
-
-        public void Ready()
-        {
-            _taskRoutine.Start();
-        }
 
         public PlayerActionSetUpdateEngine()
         {
@@ -28,49 +24,24 @@ namespace Core.svelto.engines
         {
             while (true)
             {
-                var playerActionSetEntityView = entityViewsDB.QueryEntityViews<PlayerActionSetEntityView>();
-
-                foreach (var entityView in playerActionSetEntityView)
-                {
-                    var entityId = entityView.ID;
-
-                    //update the PlayerActionSet on the entity
-                    entityView.PlayerActionSet.Value.Update();
-                    
-                    //set the left & right action components to the actionset of the entity
-                    LeftStickActionComponentSetup(entityId);
-                    RightStickActionComponentSetup(entityId);
-
-                    ActionOneActionComponentSetup(entityId);
-                    ActionTwoActionComponentSetup(entityId);
-                }
+                _playerActionSetEntityView.PlayerActionSet.Value.Update();
                 
                 yield return null;
             }
         }
 
-        private void LeftStickActionComponentSetup(EGID entityId)
+
+        protected override void Add(PlayerActionSetEntityView entityView)
         {
-            if (entityViewsDB.TryQueryEntityView(entityId, out PlayerActionLeftStickEntityView entityView))
-                entityView.LeftStick.Value = _playerActionSetEntityView.PlayerActionSet.Value.LeftStick;
+            _playerActionSetEntityView = entityView;
+            _taskRoutine.Start();
         }
 
-        private void RightStickActionComponentSetup(EGID entityId)
+        protected override void Remove(PlayerActionSetEntityView entityView)
         {
-            if (entityViewsDB.TryQueryEntityView(entityId, out PlayerActionRightStickEntityView entityView))
-                entityView.RightStick.Value = _playerActionSetEntityView.PlayerActionSet.Value.RightStick;
+            _taskRoutine.Stop();
+            _playerActionSetEntityView = null;
         }
 
-        private void ActionOneActionComponentSetup(EGID entityId)
-        {
-            if (entityViewsDB.TryQueryEntityView(entityId, out PlayerActionOneEntityView entityView))
-                entityView.ActionOne.Value = _playerActionSetEntityView.PlayerActionSet.Value.Action2;
-        }
-
-        private void ActionTwoActionComponentSetup(EGID entityId)
-        {
-            if (entityViewsDB.TryQueryEntityView(entityId, out PlayerActionTwoEntityView entityView))
-                entityView.ActionTwo.Value = _playerActionSetEntityView.PlayerActionSet.Value.Action2;
-        }
     }
 }

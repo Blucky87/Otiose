@@ -31,11 +31,6 @@ namespace Otiose
             var input = SetupInput();
 
 
-
-
-
-
-
             List<IImplementor> testEntityImplementors = new List<IImplementor>();
             world = new World(Vector2.Zero);
 
@@ -59,12 +54,13 @@ namespace Otiose
             //add movement driver, the vector value inside 
             var movementDriverComponent = new MovementDriverComponent();
 
-            var playerActionSetComponent = new PlayerActionSetComponent(input.playerActionSetOne);
             var playerActionSetContext = new PlayerActionContextComponent();
-            var playerActionLeftStickComponent = new PlayerTwoAxisActionComponent();
-            var playerActionRightStickComponent = new PlayerTwoAxisActionComponent();
-            var playerActionOneComponent = new PlayerActionComponent();
-            var playerActionTwoComponent = new PlayerActionComponent();
+            var playerActionSetComponent = new PlayerActionSetComponent(input.playerActionSetOne);
+
+            var playerActionLeftStickComponent = new PlayerTwoAxisActionComponent(input.playerActionSetOne.LeftStick);
+            var playerActionRightStickComponent = new PlayerTwoAxisActionComponent(input.playerActionSetOne.RightStick);
+            var playerActionOneComponent = new PlayerActionComponent(input.playerActionSetOne.Action1);
+            var playerActionTwoComponent = new PlayerActionComponent(input.playerActionSetOne.Action2);
 
             testEntityImplementors.Add(movementDriverComponent);
             testEntityImplementors.Add(playerActionOneComponent);
@@ -78,8 +74,6 @@ namespace Otiose
             var Joint = JointFactory.CreateFrictionJoint(world, floor, body);
             Joint.MaxForce = 80f;
             Joint.MaxTorque = 80f;
-
-
 
             var playerActionLeftStickSequencer = new Sequencer();
 
@@ -121,10 +115,10 @@ namespace Otiose
             gameEnginesRoot.AddEngine(testEngine);
             gameEnginesRoot.AddEngine(basicMoveEngine);
             gameEnginesRoot.AddEngine(physicsForceEngine);
-            gameEnginesRoot.AddEngine(playerActionLeftStickUpdateEngine);
+
             gameEnginesRoot.AddEngine(movementDriverEngine);
             gameEnginesRoot.AddEngine(playerActionSetUpdateEngine);
-
+            gameEnginesRoot.AddEngine(playerActionLeftStickUpdateEngine);
 
             gameEngineEntityFactory.BuildEntity<TestEntityDescriptor>(1, testEntityImplementors.ToArray());
         }

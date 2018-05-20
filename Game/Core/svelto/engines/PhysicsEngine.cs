@@ -19,11 +19,9 @@ namespace Core.svelto.engines
             while (true)
             {
                 var force = _physicsEntityView.Force.Force;
-                 if (force.X != 0 || force.Y != 0)
-                {
-                    _physicsEntityView.RigidBody.Body.ApplyForce(force);
-//                    Console.WriteLine($"Entity position: {_physicsEntityView.RigidBody.Body.Position}");
-                }
+
+                _physicsEntityView.RigidBody.Body.ApplyForce(force);
+                Console.WriteLine($"Entity position: {_physicsEntityView.RigidBody.Body.Position}");
 
                 yield return null;
             }

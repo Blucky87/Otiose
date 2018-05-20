@@ -22,19 +22,37 @@ namespace Core.svelto.implementors
     }
 
     class PlayerTwoAxisActionComponent : IImplementor, 
-        IPlayerActionLeftStickComponent, IPlayerActionRightStickComponent
+                                            IPlayerActionLeftStickComponent, 
+                                            IPlayerActionRightStickComponent
     {
         public PlayerTwoAxisAction Value { get; set; }
+
+        public PlayerTwoAxisActionComponent(PlayerTwoAxisAction playerTwoAxisAction)
+        {
+            Value = playerTwoAxisAction;
+        }
     }
 
     class PlayerActionComponent : IImplementor,
-        IPlayerActionOneComponent, IPlayerActionTwoComponent, IPlayerAction
+                                    IPlayerActionOneComponent, 
+                                    IPlayerActionTwoComponent, 
+                                    IPlayerAction
     {
         public PlayerAction Value { get; set; }
+
+        public PlayerActionComponent(PlayerAction playerAction)
+        {
+            Value = playerAction;
+        }
     }
 
     class PlayerActionContextComponent : IPlayerActionContextComponent, IImplementor
     {
         public int Value { get; set; }
+
+        public PlayerActionContextComponent(int context = 0)
+        {
+            Value = context;
+        }
     }
 }
