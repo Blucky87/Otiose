@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Core.svelto.entityviews;
+using Microsoft.Xna.Framework;
 using Svelto.ECS;
 using Svelto.Tasks;
 
@@ -21,10 +22,14 @@ namespace Core.svelto.engines
                 var force = _physicsEntityView.Force.Force;
 
                 _physicsEntityView.RigidBody.Body.ApplyForce(force);
-                Console.WriteLine($"Entity position: {_physicsEntityView.RigidBody.Body.Position}");
-
+                if (force != Vector2.Zero)
+                {
+                    Console.WriteLine(force);
+                }
+                
                 yield return null;
             }
+
         }
 
         protected override void Add(PhysicsEntityView entityView)
