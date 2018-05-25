@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Game\Core\Core.csproj", "{2309761B-76EC-4493-8895-26C475DCCA21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGL", "Game\Core\OpenGL.csproj", "{2309761B-76EC-4493-8895-26C475DCCA21}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Third-Party", "Third-Party", "{4744303F-71F0-4FE3-81B2-D1945F3D9440}"
 	ProjectSection(SolutionItems) = preProject
